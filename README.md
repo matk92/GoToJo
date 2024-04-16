@@ -26,4 +26,4 @@ Si vous souhaitez contribuer à ce projet, veuillez
 
 ## Licence
 
-Ce projet est sous licence...
+Ce projet est sous licence
