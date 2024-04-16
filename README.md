@@ -18,7 +18,7 @@ Pour installer ce projet, suivez les étapes suivantes:
 
 ## Utilisation
 
-Pour utiliser ce projet, faites...
+Pour utiliser ce projet, faites
 
 ## Contribution
 
