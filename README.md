@@ -22,7 +22,7 @@ Pour utiliser ce projet, faites
 
 ## Contribution
 
-Si vous souhaitez contribuer à ce projet, veuillez...
+Si vous souhaitez contribuer à ce projet, veuillez
 
 ## Licence
 
