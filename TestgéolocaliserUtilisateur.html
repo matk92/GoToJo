@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Geolocation API</h2>
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<!--  Ces deux lignes sont du HTML qui crée un paragraphe et une div. Le paragraphe 
+    est utilisé pour afficher des messages à l'utilisateur. La div est utilisée 
+    pour contenir la carte.  -->
+<p id="error"></p>
+<div id="mapholder" style="height: 400px;"></div>
+
+<!--  Ces deux lignes sont des balises de script qui chargent la bibliothèque 
+    Leaflet. Leaflet est une bibliothèque JavaScript qui permet d'afficher des 
+    cartes interactives.  -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+
+<!--  Cette balise de script contient le code JavaScript qui utilise l'API de 
+    géolocalisation pour obtenir les coordonnées de l'utilisateur et les afficher 
+    sur une carte Leaflet.  -->
+<script>
+var map;
+
+//  Cette fonction utilise l'API de géolocalisation pour obtenir les coordonnées
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    document.getElementById("error").innerHTML = "La géolocalisation n'est pas prise en charge par ce navigateur. "<br> "Geolocation is not supported by this browser.";
+  }
+}
+
+//  Cette fonction affiche les coordonnées sur une carte Leaflet
+function showPosition(position) {
+  map = L.map('mapholder').setView([position.coords.latitude, position.coords.longitude], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+}
+
+</script>
+
+</body>
+</html>
