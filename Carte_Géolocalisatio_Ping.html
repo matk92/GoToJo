@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Carte_Géolocalisatio_Ping</title>
+    <link rel="stylesheet" href="styleCart.css" />
 <body>
+
+
+  <div id="banner">
+    <img id="imgParisBanner" src="img/imageParis.png" alt="img paris">
+    <div id="textBanner">
+      <img id="imgLogobanner" src="img/LogoGoToJo.png" alt="img logo">
+      <h1>Carte Géolocalisation Ping</h1>
+    </div>
+</div>
 
 <h2>JavaScript Geolocation API</h2>
 <p>Click the button to get your coordinates.</p>
@@ -8,7 +20,7 @@
 <button onclick="getLocation()">Try It</button>
 
 <p id="error"></p>
-<div id="mapholder" style="height: 400px;"></div>
+<div id="mapholder"></div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />

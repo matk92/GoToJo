@@ -2,36 +2,70 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #2d2b46;
+    background-color: #464158;
     color: #fff;
 }
 
 header {
-    background-color: #2d2b46;
+    background-color: #464158;
     text-align: center;
 }
-
+#mapholder {
+    height: 400px;
+    width: 80%;    
+    margin: 0 auto;
+    border-radius: 24px;
+}
 .banner {
     display: flex;
-    height: 238px;
+    flex-direction: row;
+    height: 20vw;
     margin: 80px;
-    background-color: #3d3b5d;
+    background-color: #342E46;
     border-radius: 10px;
     overflow: hidden;
 }
 
-.banner img {
-    width: 441px;
-    height: 238px;
-    object-fit: cover;
+
+#imgParisBanner {
+    width: 35%;
+    min-width: 35%; 
+}
+
+.logo-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    width: 65%;
+    min-width: 65%;
+    order: 2;
+}
+
+
+#imgLogobanner{
+    width: 20%;
+    min-width: 20%; 
+    height: 16%;
+    margin-top: 3%;
+    text-align: left;
+    margin-left: 3%;   
 }
 
 .banner h1 {
-    height: 238px;
+    font-size: clamp(5px, 3vw, 32px);
+    width: 100%;
+    min-width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center; 
-    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    order: 2;
+    background: linear-gradient(to right, #FFAE35, #FFD9A0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+    margin-left: 3%;
 }
 
 main {
