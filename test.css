@@ -1,208 +1,201 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #464158;
-    color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #464158;
+  color: #fff;
 }
 
 header {
-    background-color: #464158;
-    text-align: center;
+  background-color: #464158;
+  text-align: center;
 }
 #mapholder {
-    height: 500px;
-    width: 80%;    
-    margin: 0 auto;
-    border-radius: 24px;
+  height: 500px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 24px;
 }
 .banner {
-    display: flex;
-    flex-direction: row;
-    height: 20vw;
-    margin: 80px;
-    background-color: #342E46;
-    border-radius: 10px;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  height: 20vw;
+  margin: 80px;
+  background-color: #342e46;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-
 #imgParisBanner {
-    width: 35%;
-    min-width: 35%; 
+  width: 35%;
+  min-width: 35%;
 }
 
 .logo-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 100%;
-    width: 65%;
-    min-width: 65%;
-    order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 65%;
+  min-width: 65%;
+  order: 2;
 }
 
-
-#imgLogobanner{
-    width: 20%;
-    min-width: 20%; 
-    height: 16%;
-    margin-top: 3%;
-    text-align: left;
-    margin-left: 3%;   
+#imgLogobanner {
+  width: 20%;
+  min-width: 20%;
+  height: 16%;
+  margin-top: 3%;
+  text-align: left;
+  margin-left: 3%;
 }
 
 .banner h1 {
-    font-size: clamp(5px, 3vw, 32px);
-    width: 100%;
-    min-width: 100%;
-    display: flex;
-    justify-content: center; 
-    flex-direction: column;
-    align-items: flex-start;
-    order: 2;
-    background: linear-gradient(to right, #FFAE35, #FFD9A0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: left;
-    margin-left: 3%;
+  font-size: clamp(5px, 3vw, 32px);
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  order: 2;
+  background: linear-gradient(to right, #ffae35, #ffd9a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: left;
+  margin-left: 3%;
 }
 
 main {
-    padding: 20px;
+  padding: 20px;
 }
 
 .map-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .interactive-map {
-    position: relative;
-    text-align: center;
-    margin-top: 10px;
+  position: relative;
+  text-align: center;
+  margin-top: 10px;
 }
 
 #city-select {
-    padding: 5px;
-    margin-bottom: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 #map {
-    width: 100%;
-    height: 400px;
-    background-color: #e6e6e6;
-    border-radius: 24px;
+  width: 100%;
+  height: 400px;
+  background-color: #e6e6e6;
+  border-radius: 24px;
 }
 
 .events-section {
-    background-color: #464158;
-    padding: 20px;
-    border-radius: 10px;
+  background-color: #464158;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .events-section h2 {
-    margin-top: 0;
-    text-align: center;
+  margin-top: 0;
+  text-align: center;
 }
 
 .events-filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .events-filters button {
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .events-filters button:not(.clicked) {
-    background-color: #464158;
-    color: #FFF0DA;
-    border: 3px solid #FFF0DA;
+  background-color: #464158;
+  color: #fff0da;
+  border: 3px solid #fff0da;
 }
 
 .events-filters button.clicked {
-    background-color: #FFF0DA;
-    color: #464158;
-    border: 3px solid #464158;
+  background-color: #fff0da;
+  color: #464158;
+  border: 3px solid #464158;
 }
 
-
-
 .events-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .event-card {
-    background-color: #fff;
-    color: #000;
-    padding: 20px;
-    border-radius: 10px;
-    width: calc(33% - 40px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  width: calc(33% - 40px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .event-card h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 footer {
-    background-color: #2d2b46;
-    text-align: center;
-    padding: 10px 0;
+  background-color: #2d2b46;
+  text-align: center;
+  padding: 10px 0;
 }
 
 footer p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
-
-#search-bar {
-    border: 3px solid #FFF0DA;
-    border-radius: 15px;
-    background-color: transparent;
-    width: 35%;
-    min-width: 35%; 
-    height: 16%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    float: right;
-
+.search-bar {
+  display: flex;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 10px;
+  width: 20%;
+  margin-left: auto;
+  position: relative;
+  margin-right: 10%;
 }
 
-#search-bar form {
-    display: flex;
-    gap: 10px;
-    flex-grow: 1;
+.search-bar input {
+  border: none;
+  background-color: transparent;
+  flex-grow: 1;
+  color: white;
+}
 
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-#search-bar input[type="text"] {
-    padding-right: 30px;
-    background-color: transparent;
-    color: #FFF0DA;
-    border: none;
-    flex-grow: 1;
+
+.search-bar img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
-#search-bar button {
-    border: none;
-    background: none;
-}
-#search-bar .input-wrapper img {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 15px;
-    width: 15px;
+
+.search-bar input:focus {
+  outline: none;
 }

@@ -1,137 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jeux Olympiques 2024</title>
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="test.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="banner">
-            <img id="imgParisBanner" src="img/banner-image.jpg" alt="Bannière des Jeux Olympiques">
-            <div class="logo-text-container">
-                <img id="imgLogobanner" src="img/LogoGoToJo.png" alt="img logo">
-                <h1>Les meilleurs spots pour les jeux olympiques 2024.</h1>
-            </div>
+      <div class="banner">
+        <img
+          id="imgParisBanner"
+          src="img/banner-image.jpg"
+          alt="Bannière des Jeux Olympiques"
+        />
+        <div class="logo-text-container">
+          <img id="imgLogobanner" src="img/LogoGoToJo.png" alt="img logo" />
+          <h1>Les meilleurs spots pour les jeux olympiques 2024.</h1>
         </div>
+      </div>
     </header>
     <main>
-        <h2>JavaScript Geolocation API</h2>
-        <p>Click the button to get your coordinates.</p>
-        
-        <button onclick="getLocation()">Try It</button>
+      <h2>JavaScript Geolocation API</h2>
+      <p>Click the button to get your coordinates.</p>
 
-        <div id="search-bar">
-            <form action="" method="get">
-                <button type="submit">
-                    <img src="img/loupe.png" alt="search">
-                </button>
-                <input type="text" name="search" placeholder="endroit, sport, date...">
-            </form>
+      <button onclick="getLocation()">Try It</button>
+      <div class="search-bar">
+        <input type="text" id="location" placeholder="lieux, sports" />
+        <button type="submit">
+          <img src="img/loupe.svg" alt="Search" />
+        </button>
+      </div>
+
+      <p id="error"></p>
+      <div id="mapholder"></div>
+
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+      />
+      <section class="events-section">
+        <h2>Prochains événements</h2>
+        <div class="events-filters">
+          <button>Basketball</button>
+          <button>Rugby</button>
+          <button>Natation</button>
+          <button>Tennis</button>
+          <button>Athlétisme</button>
+          <button>Volleyball</button>
+          <button>Handball</button>
         </div>
-
-        <p id="error"></p>
-        <div id="mapholder"></div>
-        
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-        
-        <script>
-          // partie de code qui permet de mettre paris par défaut sur la carte
-        var map = L.map('mapholder').setView([48.866667, 2.333333], 13);
-        
-        // partie de code qui permet de mettre la carte openstreetmap sur la carte
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        
-        //partie de code qui permet de récupérer la position de l'utilisateur
-        function getLocation() {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-          } else { 
-            document.getElementById("error").innerHTML = "La géolocalisation n'est pas prise en charge par ce navigateur. "<br> "Geolocation is not supported by this browser.";
-          }
-        }
-        
-        //partie de code qui permet d'afficher la position de l'utilisateur
-        function showPosition(position) {
-          map.setView([position.coords.latitude, position.coords.longitude], 13); // Update the position of the map
-          L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-        }
-        
-        
-        // partie de code qui permet de mettre un ping sur la carte
-        // partie de code qui permet de modifier l'image 
-        var pingIcon = L.icon({
-            iconUrl: 'img/ping.png',
-            iconSize:     [30, 50], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-        });
-        
-        // partie de code qui permet de donner la position du ping
-        var marker = L.marker([48.866667, 2.333333], {icon: pingIcon}).addTo(map);
-        
-        // partie de code qui permet de modifier la taille du ping en fonction du zoom
-        map.on('zoomend', function() {
-            var currentZoom = map.getZoom();
-            pingIcon.options.iconSize = [30 * currentZoom / 20, 50 * currentZoom / 20]; // ajuster la taille de l'icône en fonction du niveau de zoom actuel
-            pingIcon.options.iconAnchor = [14 * currentZoom / 20, 49 * currentZoom / 20]; // ajuster lacroche de l'icône en fonction du niveau de zoom actuel
-            marker.setIcon(pingIcon);
-        });
-        
-        </script>
-        <section class="events-section">
-            <h2>Prochains événements</h2>
-            <div class="events-filters">
-                <button>Basketball</button>
-                <button>Rugby</button>
-                <button>Natation</button>
-                <button>Tennis</button>
-                <button>Athlétisme</button>
-                <button>Volleyball</button>
-                <button>Handball</button>
-            </div>
-            <script>
-                document.querySelectorAll('.events-filters button').forEach(button => {
-                    button.addEventListener('click', function() {
-                        if (this.classList.contains('clicked')) {
-                            this.classList.remove('clicked');
-                        } else {
-                            this.classList.add('clicked');
-                        }
-                    });
-                });
-            </script>
-            <div class="events-list">
-                <div class="event-card">
-                    <h3>Basketball</h3>
-                    <p>Mer 15 juillet à 16h25</p>
-                    <p>Pass. de la Canopée, 75001 Paris</p>
-                </div>
-                <div class="event-card">
-                    <h3>BMX Racing</h3>
-                    <p>Mer 15 juillet à 17h00</p>
-                    <p>Pass. de la Canopée, 75001 Paris</p>
-                </div>
-                <div class="event-card">
-                    <h3>Canoe Slalom</h3>
-                    <p>Jeu 16 juillet à 10h00</p>
-                    <p>Pont Neuf, 75001 Paris</p>
-                </div>
-                <!-- Ajoutez d'autres cartes d'événements ici -->
-            </div>
-        </section>
+        <div class="events-list">
+          <div class="event-card">
+            <h3>Basketball</h3>
+            <p>Mer 15 juillet à 16h25</p>
+            <p>Pass. de la Canopée, 75001 Paris</p>
+          </div>
+          <div class="event-card">
+            <h3>BMX Racing</h3>
+            <p>Mer 15 juillet à 17h00</p>
+            <p>Pass. de la Canopée, 75001 Paris</p>
+          </div>
+          <div class="event-card">
+            <h3>Canoe Slalom</h3>
+            <p>Jeu 16 juillet à 10h00</p>
+            <p>Pont Neuf, 75001 Paris</p>
+          </div>
+        </div>
+      </section>
     </main>
     <footer>
-        <p>Politique des cookies</p>
+      <p>Politique des cookies</p>
     </footer>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="test.js"></script>
-</body>
+  </body>
 </html>
