@@ -22,7 +22,16 @@
         <p>Click the button to get your coordinates.</p>
         
         <button onclick="getLocation()">Try It</button>
-        
+
+        <div id="search-bar">
+            <form action="" method="get">
+                <button type="submit">
+                    <img src="img/loupe.png" alt="search">
+                </button>
+                <input type="text" name="search" placeholder="endroit, sport, date...">
+            </form>
+        </div>
+
         <p id="error"></p>
         <div id="mapholder"></div>
         
@@ -88,6 +97,17 @@
                 <button>Volleyball</button>
                 <button>Handball</button>
             </div>
+            <script>
+                document.querySelectorAll('.events-filters button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        if (this.classList.contains('clicked')) {
+                            this.classList.remove('clicked');
+                        } else {
+                            this.classList.add('clicked');
+                        }
+                    });
+                });
+            </script>
             <div class="events-list">
                 <div class="event-card">
                     <h3>Basketball</h3>

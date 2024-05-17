@@ -11,7 +11,7 @@ header {
     text-align: center;
 }
 #mapholder {
-    height: 400px;
+    height: 500px;
     width: 80%;    
     margin: 0 auto;
     border-radius: 24px;
@@ -95,7 +95,7 @@ main {
 }
 
 .events-section {
-    background-color: #3d3b5d;
+    background-color: #464158;
     padding: 20px;
     border-radius: 10px;
 }
@@ -114,8 +114,6 @@ main {
 }
 
 .events-filters button {
-    background-color: #514f7d;
-    color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -123,9 +121,19 @@ main {
     transition: background-color 0.3s;
 }
 
-.events-filters button:hover {
-    background-color: #6967a4;
+.events-filters button:not(.clicked) {
+    background-color: #464158;
+    color: #FFF0DA;
+    border: 3px solid #FFF0DA;
 }
+
+.events-filters button.clicked {
+    background-color: #FFF0DA;
+    color: #464158;
+    border: 3px solid #464158;
+}
+
+
 
 .events-list {
     display: flex;
@@ -156,4 +164,45 @@ footer {
 
 footer p {
     margin: 5px 0;
+}
+
+
+#search-bar {
+    border: 3px solid #FFF0DA;
+    border-radius: 15px;
+    background-color: transparent;
+    width: 35%;
+    min-width: 35%; 
+    height: 16%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    float: right;
+
+}
+
+#search-bar form {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+
+}
+#search-bar input[type="text"] {
+    padding-right: 30px;
+    background-color: transparent;
+    color: #FFF0DA;
+    border: none;
+    flex-grow: 1;
+}
+#search-bar button {
+    border: none;
+    background: none;
+}
+#search-bar .input-wrapper img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
 }
