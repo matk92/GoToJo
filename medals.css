@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    background-color: #464158;
+    color: #FFFFFF;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.date {
+    font-size: 1.2em;
+    color: #76E1A7;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 29px;
+}
+
+thead {
+    background-color: rgba(173, 163, 163, 0.158);
+}
+
+thead th {
+    padding: 15px;
+    font-weight: normal;
+}
+
+th, td {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+th:first-child, td:first-child {
+    border-left: none;
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+th img, td img {
+    width: 20px;
+    vertical-align: middle;
+}
+
+tbody tr {
+    background-color: rgba(173, 163, 163, 0.158);
+}
+
+tbody tr td {
+    padding: 15px 10px;
+}
+
+.flag {
+    width: 30px;
+    margin-right: 10px;
+}
+
+footer {
+    color: #B0A8B9;
+    margin-top: auto;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+}
