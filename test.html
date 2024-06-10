@@ -10,39 +10,44 @@
   <body>
     <header>
       <div class="banner">
-        <img
-          id="imgParisBanner"
-          src="img/banner-image.jpg"
-          alt="Bannière des Jeux Olympiques"
-        />
+        <img id="imgParisBanner" src="img/banner-image.jpg" alt="Bannière des Jeux Olympiques" />
         <div class="logo-text-container">
-          <img id="imgLogobanner" src="img/LogoGoToJo.png" alt="img logo" />
-          <h1>Les meilleurs spots pour les jeux olympiques 2024.</h1>
+          <img width="113px" height="31px" src="img/LogoGoToJo.png" alt="img logo" />
+          <h1 class="barlow-extrabold">Les meilleurs spots pour les jeux olympiques 2024.</h1>
         </div>
       </div>
     </header>
     <main>
-      <h2>JavaScript Geolocation API</h2>
-      <p>Click the button to get your coordinates.</p>
-
-      <button onclick="getLocation()">Try It</button>
-      <div class="search-bar">
-        <input type="text" id="location" placeholder="lieux, sports" />
-        <button type="submit">
-          <img src="img/loupe.svg" alt="Search" />
-        </button>
+      <!-- Search Bar -->
+      <div class="filters">
+        <h1>Carte Interactive</h1>
+        <div class="search-bar">
+          <input type="text" id="location" placeholder="lieux, sports" />
+          <button type="submit">
+            <img src="img/loupe.svg" alt="Search" />
+          </button>
+        </div>
       </div>
 
+      <!-- Carte -->
       <p id="error"></p>
-      <div id="map-and-iframe-container">
-        <iframe id="direction" src="https://citymapper.com"></iframe>  
-        <div id="mapholder"></div>
-     </div>
+      <div id="map-and-iframe-container" class="map-and-iframe-container">
+        <iframe id="direction" src="https://citymapper.com"></iframe>
+        <div class="mapholder" id="mapholder"></div>
+        <button onclick="getLocation()" class="locationButton">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Locate me
+        </button>
+      </div>
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet/dist/leaflet.css"
-      />
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
       <section class="events-section">
         <div class="events-filters">
           <button>Basketball</button>
@@ -61,7 +66,10 @@
             <img id="imgEvenement" src="img/3×3 Basketball.png" alt="Basketball" />
             <div id="Vector-and-text-container">
               <img id="Vector" src="img/Vector.png" alt="Vector" />
-              <p>Pass. de la Canopée,<br/>  75001 Paris</p>
+              <p>
+                Pass. de la Canopée,<br />
+                75001 Paris
+              </p>
             </div>
           </div>
           <div class="event-card">
@@ -111,6 +119,5 @@
       <p>Politique des cookies</p>
     </footer>
     <script src="test.js"></script>
-
-</body>
+  </body>
 </html>

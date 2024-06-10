@@ -1,90 +1,121 @@
+@import "./barlow.css";
+@import "./inter.css";
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #464158;
-  color: #fff;
+  color: #FFF0DA;
 }
 
 header {
   background-color: #464158;
   text-align: center;
 }
-#mapholder {
+
+.map-and-iframe-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
   height: 50vw;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+
+  .mapholder {
+    height: 50vw;
+    width: 100%;
+  }
 }
 
-#map-and-iframe-container {
+.locationButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  gap: 10px;
+  white-space: nowrap;
+  border-radius: 4px;
+  padding: 4px 16px 4px 8px;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
 
-    display: flex;
-    flex-direction: row;
-    height: 50vw;
-    width: 80%;
-    margin: 0 auto;
-    border-radius: 10px;
-    overflow: hidden;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.filters{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  gap: 10px;
+  margin: 10px 0;
+
+  h1{
+    margin: 0;
+  }
+}
+
+.locationButton:hover {
+  background-color: #fff !important;
+  color: #464158 !important;
 }
 
 #direction {
-    height: 50vw;
-    width: 50%;
-    margin: 0 auto;
+  height: 50vw;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .banner {
   display: flex;
   flex-direction: row;
   height: 20vw;
-  margin: 80px;
+  width: 90%;
+  margin: 40px auto;
   background-color: #342e46;
-  border-radius: 10px;
+  border-radius: 16px;
   overflow: hidden;
 }
 
 #imgParisBanner {
-  width: 35%;
-  min-width: 35%;
+  width: 40%;
+  object-fit: cover;
 }
 
 .logo-text-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
-  width: 65%;
-  min-width: 65%;
+  gap: 25px;
+  padding: 1.5rem;
   order: 2;
-}
-
-#imgLogobanner {
-  width: 20%;
-  min-width: 20%;
-  height: 16%;
-  margin-top: 3%;
-  text-align: left;
-  margin-left: 3%;
 }
 
 .banner h1 {
-  font-size: clamp(5px, 3vw, 32px);
-  width: 100%;
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-start;
-  order: 2;
+  font-size: 48px;
+  margin: 0;
   background: linear-gradient(to right, #ffae35, #ffd9a0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: left;
-  margin-left: 3%;
 }
 
 main {
-  padding: 20px;
+  margin: 0 auto;
+  width: 85%;
+  max-width: 1440px;
 }
 
 .map-section {
@@ -155,7 +186,7 @@ main {
 }
 
 .event-card {
-  background-color: #FFF0DA;
+  background-color: #fff0da;
   color: #000;
   padding: 20px;
   border-radius: 10px;
@@ -163,11 +194,11 @@ main {
   position: relative;
   overflow: hidden;
 }
-#imgEvenement{
+#imgEvenement {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 50%; 
+  width: 50%;
   object-fit: cover;
 }
 #Vector-and-text-container {
@@ -176,10 +207,6 @@ main {
   bottom: 0;
   left: 0;
 }
-#Vector {
- 
-}
-
 .event-card h3 {
   margin-top: 0;
 }
@@ -199,35 +226,38 @@ footer p {
   background-color: transparent;
   border: 1px solid white;
   border-radius: 25px;
-  padding: 10px;
-  width: 20%;
+  width: 320px;
   margin-left: auto;
   position: relative;
-  margin-right: 10%;
-}
 
-.search-bar input {
-  border: none;
-  background-color: transparent;
-  flex-grow: 1;
-  color: white;
-}
+  input {
+    border: none;
+    background-color: transparent;
+    flex-grow: 1;
+    padding: 16px;
+    color: white;
+  }
 
-.search-bar button {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-.search-bar img {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
+  img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
 
-.search-bar input:focus {
-  outline: none;
+  input:focus {
+    outline: none;
+  }
+  input::placeholder {
+    color: rgba(255, 240, 218, 0.5);
+    font-style: italic;
+  }
 }

@@ -30,11 +30,7 @@ body {
     flex-direction: column;
 }
 
-#imgLogobanner {
-    order: 1;
-    float: left;
-    max-width:13%;
-}
+
 
 h1 {
     order: 2;
