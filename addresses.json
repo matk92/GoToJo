@@ -1,0 +1,177 @@
+{
+    "Arena Bercy": {
+      "sports": ["Basketball", "Gymnastique artistique", "Trampoline"],
+      "adresse": "Rue de Bercy, 75012 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/arena-bercy"
+    },
+    "Arena Champ-de-Mars": {
+      "sports": ["Judo", "Lutte"],
+      "adresse": "Champ-de-Mars, 75007 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/arena-champ-de-mars"
+    },
+    "Arena Paris Nord": {
+      "sports": ["Boxe", "Pentathlon moderne"],
+      "adresse": "Villepinte, 93420",
+      "url": "https://olympics.com/fr/paris-2024/sites/arena-paris-nord"
+    },
+    "Arena Paris Sud": {
+      "sports": ["Haltérophilie", "Handball", "Tennis de table", "Volleyball"],
+      "adresse": "Porte de Versailles, 75015 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/arena-paris-sud"
+    },
+    "Arena Porte de La Chapelle": {
+      "sports": ["Badminton", "Gymnastique rythmique"],
+      "adresse": "Porte de la Chapelle, 75018 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/arena-porte-de-la-chapelle"
+    },
+    "Centre Aquatique": {
+      "sports": ["Natation synchronisée", "Plongeon", "Water-Polo"],
+      "adresse": "Saint-Denis, 93210",
+      "url": "https://olympics.com/fr/paris-2024/sites/centre-aquatique"
+    },
+    "Centre National de Tir de Châteauroux": {
+      "sports": ["Tir"],
+      "adresse": "Déols, 36130",
+      "url": "https://olympics.com/fr/paris-2024/sites/centre-national-de-tir-de-chateauroux"
+    },
+    "Château de Versailles": {
+      "sports": ["Pentathlon moderne", "Sports Équestres"],
+      "adresse": "Place d'Armes, 78000 Versailles",
+      "url": "https://olympics.com/fr/paris-2024/sites/chateau-de-versailles"
+    },
+    "Colline d'Elancourt": {
+      "sports": ["VTT"],
+      "adresse": "Élancourt, 78990",
+      "url": "https://olympics.com/fr/paris-2024/sites/colline-d-elancourt"
+    },
+    "Grand Palais": {
+      "sports": ["Escrime", "Taekwondo"],
+      "adresse": "Avenue Winston Churchill, 75008 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/grand-palais"
+    },
+    "Hôtel de Ville": {
+      "sports": ["Athlétisme"],
+      "adresse": "Place de l'Hôtel de Ville, 75004 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/hotel-de-ville"
+    },
+    "Invalides": {
+      "sports": ["Athlétisme", "Cyclisme sur route", "Tir à l'arc"],
+      "adresse": "Esplanade des Invalides, 75007 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/invalides"
+    },
+    "La Concorde": {
+      "sports": ["Basketball 3x3", "Breaking", "Cyclisme BMX Freestyle", "Skateboard"],
+      "adresse": "Place de la Concorde, 75008 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/la-concorde"
+    },
+    "Golf National": {
+      "sports": ["Golf"],
+      "adresse": "Guyancourt, 78280",
+      "url": "https://olympics.com/fr/paris-2024/sites/golf-national"
+    },
+    "Marina de Marseille": {
+      "sports": ["Voile"],
+      "adresse": "Marseille, 13008",
+      "url": "https://olympics.com/fr/paris-2024/sites/marina-de-marseille"
+    },
+    "Parc des Princes": {
+      "sports": ["Football"],
+      "adresse": "24 Rue du Commandant Guilbaud, 75016 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/parc-des-princes"
+    },
+    "Paris La Défense Arena": {
+      "sports": ["Natation", "Water-Polo"],
+      "adresse": "99 Jardins de l'Arche, 92000 Nanterre",
+      "url": "https://olympics.com/fr/paris-2024/sites/paris-la-defense-arena"
+    },
+    "Pont Alexandre III": {
+      "sports": ["Cyclisme sur route", "Marathon Swimming", "Triathlon"],
+      "adresse": "Pont Alexandre III, 75008 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/pont-alexandre-iii"
+    },
+    "Site d'escalade Bourget": {
+      "sports": ["Escalade sportive"],
+      "adresse": "Le Bourget, 93350",
+      "url": "https://olympics.com/fr/paris-2024/sites/site-d-escalade-bourget"
+    },
+    "Stade BMX de Saint-Quentin-en-Yvelines": {
+      "sports": ["Cyclisme BMX Racing"],
+      "adresse": "Montigny-le-Bretonneux, 78180",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-bmx-de-saint-quentin-en-yvelines"
+    },
+    "Stade de Bordeaux": {
+      "sports": ["Football"],
+      "adresse": "Cours Jules Ladoumegue, 33300 Bordeaux",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-bordeaux"
+    },
+    "Stade de France": {
+      "sports": ["Athlétisme", "Rugby Sevens"],
+      "adresse": "Saint-Denis, 93216",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-france"
+    },
+    "Stade de la Beaujoire": {
+      "sports": ["Football"],
+      "adresse": "Route de Saint-Joseph, 44300 Nantes",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-la-beaujoire"
+    },
+    "Stade de Lyon": {
+      "sports": ["Football"],
+      "adresse": "10 Avenue Simone Veil, 69150 Décines-Charpieu",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-lyon"
+    },
+    "Stade de Marseille": {
+      "sports": ["Football"],
+      "adresse": "3 Boulevard Michelet, 13008 Marseille",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-marseille"
+    },
+    "Stade de Nice": {
+      "sports": ["Football"],
+      "adresse": "Boulevard des Jardiniers, 06200 Nice",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-de-nice"
+    },
+    "Stade Geoffroy-Guichard": {
+      "sports": ["Football"],
+      "adresse": "14 Rue Paul et Pierre Guichard, 42000 Saint-Étienne",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-geoffroy-guichard"
+    },
+    "Stade Nautique de Vaires-sur-Marne": {
+      "sports": ["Aviron", "Canoe Slalom", "Canoe Sprint"],
+      "adresse": "Route de Torcy, 77360 Vaires-sur-Marne",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-nautique-de-vaires-sur-marne"
+    },
+    "Stade Pierre Mauroy": {
+      "sports": ["Basketball", "Handball"],
+      "adresse": "261 Boulevard de Tournai, 59650 Villeneuve-d'Ascq",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-pierre-mauroy"
+    },
+    "Stade Roland-Garros": {
+      "sports": ["Boxe", "Tennis"],
+      "adresse": "2 Avenue Gordon Bennett, 75016 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-roland-garros"
+    },
+    "Stade Tour Eiffel": {
+      "sports": ["Volleyball de plage"],
+      "adresse": "Champ de Mars, 75007 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-tour-eiffel"
+    },
+    "Stade Yves-du-Manoir": {
+      "sports": ["Hockey"],
+      "adresse": "12 Rue François Faber, 92190 Colombes",
+      "url": "https://olympics.com/fr/paris-2024/sites/stade-yves-du-manoir"
+    },
+    "Teahupo'o": {
+      "sports": ["Surf"],
+      "adresse": "Teahupo'o, 98709",
+      "url": "https://olympics.com/fr/paris-2024/sites/teahupo-o-tahiti"
+    },
+    "Trocadero": {
+      "sports": ["Athlétisme", "Cyclisme sur route"],
+      "adresse": "Place du Trocadéro et du 11 Novembre, 75016 Paris",
+      "url": "https://olympics.com/fr/paris-2024/sites/trocadero"
+    },
+    "Vélodrome National de Saint-Quentin-en-Yvelines": {
+      "sports": ["Cyclisme sur piste"],
+      "adresse": "1 Rue Laurent Fignon, 78180 Montigny-le-Bretonneux",
+      "url": "https://olympics.com/fr/paris-2024/sites/velodrome-national-de-saint-quentin-en-yvelines"
+    }
+}
