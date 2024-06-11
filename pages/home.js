@@ -1,3 +1,18 @@
+import { SportCard } from "../components/SportCard.js";
+
+async function SportsList() {
+  const url =
+    "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=9";
+
+  let data = await fetch(url).then((response) => response.json());
+
+  let eventsList = data.results.map((sport) => {
+    return SportCard(sport);
+  });
+
+  return eventsList;
+}
+
 export default {
   head: [
     "<title>Jeux Olympiques 2024</title>",
@@ -46,7 +61,7 @@ export default {
                   children: [
                     {
                       type: "TEXT_NODE",
-                      content: "Les meilleurs spots pour les jeux olympiques 2024.",
+                      content: "Les meilleurs spots pour les jeux olympiques 2024",
                     },
                   ],
                 },
@@ -260,10 +275,11 @@ export default {
         },
         {
           type: "div",
+          head: ['<link rel="stylesheet" href="styles/sportCard.css" />'],
           props: {
             class: "events-list",
-            // EVENTS LIST
           },
+          children: await SportsList(),
         },
       ],
     },
@@ -285,7 +301,7 @@ export default {
       type: "script",
       props: {
         async: true,
-        src: "js/map.js",
+        src: "js/test.js",
       },
     },
   ],

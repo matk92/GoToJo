@@ -1,5 +1,8 @@
+// Url pour remonter les données des sites de compétition
 const url =
 "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=9";
+
+
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
