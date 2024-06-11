@@ -36,31 +36,31 @@ function showPosition(position) {
 
 // partie de code qui permet de mettre un ping sur la carte
 // partie de code qui permet de modifier l'image
-var pingIcon = L.icon({
-  iconUrl: "img/ping.png",
-  iconSize: [30, 50], // size of the icon
-  shadowSize: [50, 64], // size of the shadow
-  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-  shadowAnchor: [4, 62], // the same for the shadow
-  popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-});
+// var pingIcon = L.icon({
+//   iconUrl: "img/ping.png",
+//   iconSize: [30, 50], // size of the icon
+//   shadowSize: [50, 64], // size of the shadow
+//   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62], // the same for the shadow
+//   popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+// });
 
-// partie de code qui permet de donner la position du ping
-var marker = L.marker([48.866667, 2.333333], { icon: pingIcon }).addTo(map);
+// // partie de code qui permet de donner la position du ping
+// var marker = L.marker([48.866667, 2.333333], { icon: pingIcon }).addTo(map);
 
-// partie de code qui permet de modifier la taille du ping en fonction du zoom
-map.on("zoomend", function () {
-  var currentZoom = map.getZoom();
-  pingIcon.options.iconSize = [
-    (30 * currentZoom) / 20,
-    (50 * currentZoom) / 20,
-  ]; // ajuster la taille de l'icône en fonction du niveau de zoom actuel
-  pingIcon.options.iconAnchor = [
-    (14 * currentZoom) / 20,
-    (49 * currentZoom) / 20,
-  ]; // ajuster lacroche de l'icône en fonction du niveau de zoom actuel
-  marker.setIcon(pingIcon);
-});
+// // partie de code qui permet de modifier la taille du ping en fonction du zoom
+// map.on("zoomend", function () {
+//   var currentZoom = map.getZoom();
+//   pingIcon.options.iconSize = [
+//     (30 * currentZoom) / 20,
+//     (50 * currentZoom) / 20,
+//   ]; // ajuster la taille de l'icône en fonction du niveau de zoom actuel
+//   pingIcon.options.iconAnchor = [
+//     (14 * currentZoom) / 20,
+//     (49 * currentZoom) / 20,
+//   ]; // ajuster lacroche de l'icône en fonction du niveau de zoom actuel
+//   marker.setIcon(pingIcon);
+// });
 
 var searchInput = document.querySelector(".search-bar input");
 
