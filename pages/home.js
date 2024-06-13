@@ -301,7 +301,7 @@ export default {
       type: "script",
       props: {
         async: true,
-        src: "js/test.js",
+        src: "../js/map.js",
       },
     },
   ],
