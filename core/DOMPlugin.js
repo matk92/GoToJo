@@ -1,6 +1,6 @@
 import BrowserRouter from "../components/BrowserRouter.js";
 
-const MiniReactDom = {
+const DOMPlugin = {
   render: function (rootElement, routes) {
     BrowserRouter.bind(this)(routes, rootElement);
   },
@@ -18,12 +18,15 @@ const MiniReactDom = {
         element = document.createElement(structure.type);
       }
     }
+
     if (structure.props) {
       for (const propName in structure.props) {
         if (propName === "style") {
           Object.assign(element.style, structure.props[propName]);
         } else if (propName.startsWith("data-")) {
           element.dataset[propName.replace("data-", "")] = structure.props[propName];
+        }else if (propName.startsWith("on")){
+          element[propName.toLowerCase()] = structure.props[propName];
         } else {
           element.setAttribute(propName, structure.props[propName]);
         }
@@ -57,4 +60,4 @@ const MiniReactDom = {
   },
 };
 
-export default MiniReactDom;
+export default DOMPlugin;

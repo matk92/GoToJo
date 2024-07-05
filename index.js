@@ -1,4 +1,4 @@
-import MiniReactDom from "./core/MiniReactDom.js";
+import DOMPlugin from "./core/DOMPlugin.js";
 import routes from "./js/routes.js";
 
-MiniReactDom.render(document.getElementById("root"), routes);
+DOMPlugin.render(document.getElementById("root"), routes);

@@ -27,6 +27,7 @@ function getLocation() {
       "Geolocation is not supported by this browser.";
   }
 }
+document.getElementById("locateMe").addEventListener("click", getLocation);
 
 //partie de code qui permet d'afficher la position de l'utilisateur
 function showPosition(position) {

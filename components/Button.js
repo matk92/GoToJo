@@ -1,6 +1,5 @@
-import { Component } from "../core/MiniReact.js";
 
-class Button extends Component {
+class Button {
   render() {
     return {
       type: "button",

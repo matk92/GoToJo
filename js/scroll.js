@@ -22,5 +22,5 @@ gsap
   .fromTo(".cloud2", { y: -150 }, { y: -500 }, 0)
   .fromTo(".cloud3", { y: -50 }, { y: -650 }, 0)
   .fromTo(".mountBg", { y: -10 }, { y: -100 }, 0)
-  .fromTo(".cloud4", { y: -30 }, { y: -250 }, 0)
- // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
+  .fromTo(".cloud4", { y: -30 }, { y: -250 }, 0);
+// scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)

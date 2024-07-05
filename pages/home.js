@@ -145,7 +145,7 @@ export default {
             {
               type: "button",
               props: {
-                onclick: "getLocation()",
+                id: "locateMe",
                 class: "locationButton",
               },
               children: [
@@ -165,7 +165,14 @@ export default {
         {
           type: "script",
           props: {
+            async: true,
             src: "https://unpkg.com/leaflet/dist/leaflet.js",
+            onload: function () {
+              let script = document.createElement("script");
+              script.src = "js/map.js";
+              script.type = "module";
+              document.head.appendChild(script);
+            },
           },
         },
         {
@@ -296,13 +303,6 @@ export default {
           ],
         },
       ],
-    },
-    {
-      type: "script",
-      props: {
-        async: true,
-        src: "../js/map.js",
-      },
     },
   ],
 };
