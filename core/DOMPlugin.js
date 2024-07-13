@@ -1,4 +1,4 @@
-import BrowserRouter from "../components/BrowserRouter.js";
+import BrowserRouter from "./BrowserRouter.js";
 
 const DOMPlugin = {
   render: function (rootElement, routes) {
@@ -6,6 +6,7 @@ const DOMPlugin = {
   },
   renderStructure: function generateDom(structure) {
     let element;
+
     if (typeof structure.type === "string") {
       if (structure.type === "TEXT_NODE") {
         return document.createTextNode(structure.content);
@@ -25,7 +26,7 @@ const DOMPlugin = {
           Object.assign(element.style, structure.props[propName]);
         } else if (propName.startsWith("data-")) {
           element.dataset[propName.replace("data-", "")] = structure.props[propName];
-        }else if (propName.startsWith("on")){
+        } else if (propName.startsWith("on")) {
           element[propName.toLowerCase()] = structure.props[propName];
         } else {
           element.setAttribute(propName, structure.props[propName]);
@@ -45,7 +46,9 @@ const DOMPlugin = {
     // childrens of element
     if (structure.children) {
       for (const child of structure.children) {
-        element.appendChild(this.renderStructure(child));
+        if (child instanceof Promise) {
+          child.then((resolvedChild) => element.appendChild(this.renderStructure(resolvedChild)));
+        } else element.appendChild(this.renderStructure(child));
       }
     }
 
