@@ -69,8 +69,9 @@ const DOMPlugin = {
 
     return element;
   },
-  reRender: async function (element, newStructure) {
-    console.log(element, newStructure);
+  reRender: async function (elementId, newStructure) {
+    let element = document.getElementById(elementId);
+
     if (newStructure instanceof Promise) {
       newStructure.then((resolvedStructure) => element.replaceWith(this.renderStructure(resolvedStructure)));
     } else element.replaceWith(this.renderStructure(newStructure));

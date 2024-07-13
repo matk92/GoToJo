@@ -1,7 +1,21 @@
+import MapPlugin from "../core/MapPlugin.js";
+import Footer from "../sections/Footer.js";
 import Header from "../sections/Header.js";
 import SportsList from "../sections/SportsList.js";
 
 export default function Home() {
+  const map = new MapPlugin();
+  console.log(map);
+  const sports = [
+    { name: "Basketball", latitude: 48.8382, longitude: 2.3782, description: "<b>Arena Bercy</b><br>Basketball" },
+    { name: "Rugby", letitude: 48.924459, longitude: 2.360164, description: "<b>Stade de France</b><br>Rugby" },
+    { name: "Natation" },
+    { name: "Tennis" },
+    { name: "Athlétisme" },
+    { name: "Volleyball" },
+    { name: "Handball" },
+  ];
+
   return {
     head: [
       "<title>Jeux Olympiques 2024</title>",
@@ -66,6 +80,16 @@ export default function Home() {
                     children: [
                       {
                         type: "input",
+                        events: {
+                          keydown: [
+                            (event) => {
+                              if (event.key === "Enter") {
+                                event.preventDefault();
+                                map.onSearch(event);
+                              }
+                            },
+                          ],
+                        },
                         props: {
                           type: "text",
                           id: "location",
@@ -114,6 +138,7 @@ export default function Home() {
                   {
                     type: "button",
                     props: {
+                      onclick: map.locateMe,
                       id: "locateMe",
                       class: "locationButton",
                     },
@@ -136,12 +161,7 @@ export default function Home() {
                 props: {
                   async: true,
                   src: "https://unpkg.com/leaflet/dist/leaflet.js",
-                  onload: function () {
-                    let script = document.createElement("script");
-                    script.src = "js/map.js";
-                    script.type = "module";
-                    document.head.appendChild(script);
-                  },
+                  onload: () => map.initMap(),
                 },
               },
               {
@@ -155,71 +175,26 @@ export default function Home() {
                     props: {
                       class: "events-filters",
                     },
-                    children: [
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Basketball",
-                          },
-                        ],
+                    children: sports.map((sport) => ({
+                      type: "button",
+                      props: {
+                        onclick: (event) => {
+                          if (sport.latitude && sport.longitude)
+                            map.showPosition(sport.latitude, sport.longitude, sport.description || sport.name);
+                          if (event.target.classList.contains("clicked")) {
+                            event.target.classList.remove("clicked");
+                          } else {
+                            event.target.classList.add("clicked");
+                          }
+                        },
                       },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Rugby",
-                          },
-                        ],
-                      },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Natation",
-                          },
-                        ],
-                      },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Tennis",
-                          },
-                        ],
-                      },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Athlétisme",
-                          },
-                        ],
-                      },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Volleyball",
-                          },
-                        ],
-                      },
-                      {
-                        type: "button",
-                        children: [
-                          {
-                            type: "TEXT_NODE",
-                            content: "Handball",
-                          },
-                        ],
-                      },
-                    ],
+                      children: [
+                        {
+                          type: "TEXT_NODE",
+                          content: sport.name,
+                        },
+                      ],
+                    })),
                   },
                 ],
               },
@@ -228,20 +203,7 @@ export default function Home() {
           },
         ],
       },
-      {
-        type: "footer",
-        children: [
-          {
-            type: "p",
-            children: [
-              {
-                type: "TEXT_NODE",
-                content: "Politique des cookies",
-              },
-            ],
-          },
-        ],
-      },
+      Footer(),
     ],
   };
 }

@@ -173,16 +173,6 @@
   margin-top: 0;
 }
 
-footer {
-  background-color: #2d2b46;
-  text-align: center;
-  padding: 10px 0;
-}
-
-footer p {
-  margin: 5px 0;
-}
-
 .col-center {
   display: flex;
   flex-direction: column;

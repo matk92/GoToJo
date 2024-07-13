@@ -13,6 +13,7 @@ export default function SportsList(selectedDate = undefined) {
     eventsList.sort((a, b) => {
       return new Date(a.start_date) - new Date(b.start_date);
     });
+    console.log(eventsList);
 
     if (selectedDate === undefined) selectedDate = eventsList[0].start_date;
 
@@ -24,9 +25,8 @@ export default function SportsList(selectedDate = undefined) {
     }
 
     function changeDate(event) {
-      console.log(event.target.value);
       let date = event.target.value;
-      DOMPlugin.reRender(document.getElementById("sportsList"), SportsList(date));
+      DOMPlugin.reRender("sportsList", SportsList(date));
     }
 
     resolve({
@@ -35,8 +35,7 @@ export default function SportsList(selectedDate = undefined) {
         id: "sportsList",
         style: {
           "text-align": "center",
-          "margin-top": "20px",
-          "margin-bottom": "20px",
+          margin: "50px 0px",
         },
       },
       children: [
@@ -45,7 +44,7 @@ export default function SportsList(selectedDate = undefined) {
           props: {
             style: {
               "font-size": "2rem",
-              margin: "20px auto",
+              margin: "0px",
             },
           },
           children: [
