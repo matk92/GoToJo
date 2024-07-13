@@ -43,6 +43,14 @@ const DOMPlugin = {
       }
     }
 
+    if (structure.windowEvents) {
+      for (const eventName in structure.windowEvents) {
+        for (const eventListeners of structure.windowEvents[eventName]) {
+          window.addEventListener(eventName, eventListeners);
+        }
+      }
+    }
+
     // childrens of element
     if (structure.children) {
       for (const child of structure.children) {
@@ -60,6 +68,12 @@ const DOMPlugin = {
     }
 
     return element;
+  },
+  reRender: async function (element, newStructure) {
+    console.log(element, newStructure);
+    if (newStructure instanceof Promise) {
+      newStructure.then((resolvedStructure) => element.replaceWith(this.renderStructure(resolvedStructure)));
+    } else element.replaceWith(this.renderStructure(newStructure));
   },
 };
 

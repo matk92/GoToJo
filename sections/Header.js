@@ -1,13 +1,24 @@
 export default function Header() {
+  function onScroll() {
+    const imgParisBanner = document.getElementById("imgParisBanner");
+    const scrollValue = window.scrollY;
+    imgParisBanner.style.top = `${scrollValue * 0.2}px`;
+    const textBanner = document.getElementById("textBanner");
+    textBanner.style.transform = `scale(${1 - scrollValue * 0.001}) translateY(${1 - scrollValue * 0.6}px)`;
+  }
+
   return {
     type: "header",
+    windowEvents: {
+      scroll: [onScroll],
+    },
     props: {
       style: {
         position: "fixed",
         width: "100%",
-        top: "0",
+        top: "-10vh",
         zIndex: "-10",
-        height: "35vh",
+        height: "45vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -49,6 +60,7 @@ export default function Header() {
           {
             type: "div",
             props: {
+              id: "textBanner",
               style: {
                 margin: "20px auto",
                 "text-align": "center",
