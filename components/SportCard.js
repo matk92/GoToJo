@@ -1,9 +1,19 @@
 // Carte qui affiche un sport, la date, le lieu et un logo
-export const SportCard = function (sport) {
+export const SportCard = function (sport, onClickLocation) {
   return {
-    type: "div",
+    type: "article",
+    events: {
+      click: [
+        (e) => {
+          e.preventDefault();
+          let path = `/event/${sport.sports}`;
+          history.pushState(null, null, path);
+        },
+      ],
+    },
     props: {
       style: {
+        cursor: "pointer",
         height: "100%",
         position: "relative",
         margin: "0 auto",
@@ -21,7 +31,10 @@ export const SportCard = function (sport) {
       {
         type: "div",
         props: {
-          style: {},
+          style: {
+            position: "relative",
+            "z-index": "10",
+          },
         },
         children: [
           {
@@ -61,15 +74,13 @@ export const SportCard = function (sport) {
           },
           {
             type: "a",
-            props: {
-              style: {
-                display: "flex",
-                "align-items": "center",
-                gap: "10px",
-                color: "#0078d0",
-                "text-decoration": "none",
-                cursor: "pointer",
-              },
+            events: {
+              click: [
+                (e) => {
+                  e.stopPropagation();
+                  onClickLocation();
+                },
+              ],
             },
             children: [
               {
@@ -96,11 +107,12 @@ export const SportCard = function (sport) {
           style: {
             "object-fit": "contain",
             position: "absolute",
-            right: "-50px",
-            bottom: "-50px",
+            opacity: "0.35",
+            right: "-60px",
+            bottom: "-80px",
           },
-          width: "200px",
-          height: "200px",
+          width: "250px",
+          height: "250px",
           src: getSportImage(sport.sports),
           alt: sport.sports,
         },
@@ -115,13 +127,59 @@ function getSportImage(sport) {
     "Football (FBL)": "Cycling road (Olympic).svg",
     "Para Triathlon (PTRI)": "Athletics (Olympic).svg",
     "Basketball fauteuil (PWBK)": "Basketball (Olympic).svg",
+    "Athlétisme - arrivée Marathon (ATM), Cyclisme sur route - départ Contre-la-montre (CRD), Tir à l'arc (ARC)":
+      "Archery (Olympic).svg",
+    "Handball (HBL), Haltérophilie (WLF)": "Beach volleyball (Olympic).svg",
+    "Volley-ball de plage (VBV)": "Beach volleyball (Olympic).svg",
+    "Parc Urbain la Concorde (FCO)": "Artistic Gymnastics (Olympic).svg",
+    "Basketball (BKB), Handball (HBL)": "Basketball (Olympic).svg",
+    "Tennis de table (TTE)": "Badminton (Olympic).svg",
+    "Aviron (ROW), Canoë - course en ligne (CSP)": "Canoe slalom (Olympic).svg",
+    "Hockey (HOC)": "Artistic Gymnastics (Olympic).svg",
+    "Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)":
+      "Cycling road (Olympic).svg",
+    "Basketball (BKB), Gymnastique artistique (GAR), Gymnastique trampoline (GTR)": "Basketball (Olympic).svg",
+    "Judo (JUD), Lutte (WRE)": "Boxing (Olympic).svg",
+    "Badminton (BDM), Gymnastique rythmique (GRY)": "Badminton (Olympic).svg",
+    "Escrime (FEN), Taekwondo (TKW)": "Boxing (Olympic).svg",
+    "Boxe (BOX), Pentathlon moderne (MDN)": "Boxing (Olympic).svg",
+    "Tennis (TEN), Boxe (BOX)": "Badminton (Olympic).svg",
+    "Volley-ball (VVO)": "Beach volleyball (Olympic).svg",
+    "Surf (SRF)": "Artistic swimming (Olympic).svg",
+    "Sports équestres - dressage (EQD), Sports équestres - concours complet (EQE), Sports équestres - saut d'obstacles (EQJ), Pentathlon moderne (MPN)":
+      "Equestrian dressage (Olympic).svg",
+    "Sports équestres": "Equestrian dressage (Olympic).svg",
+    "Canoë-kayak slalom (CSL)": "Canoe sprint (Olympic).svg",
+    "Natation artistique (SWA)": "Artistic swimming (Olympic).svg",
+    "Plongeon (DIV)": "Artistic swimming (Olympic).svg",
+    "Water-polo (WPO)": "Artistic swimming (Olympic).svg",
+    "Tir (SHO)": "Archery (Olympic).svg",
+    "Skateboard (SKB)": "BMX freestyle (Olympic).svg",
+    "Cyclisme VTT (MTB)": "BMX freestyle (Olympic).svg",
+    "Voile (SAL)": "Canoe sprint (Olympic).svg",
+    "Basketball 3x3 (BK3)": "3×3 Basketball (Olympic).svg",
+    "Breaking (BKG)": "Breaking (Olympic).svg",
+    "BMX freestyle (BMF)": "BMX freestyle (Olympic).svg",
+    "Athlétisme marche (ATW)": "Athletics (Olympic).svg",
+    "Cyclisme sur route - Course sur route (CRD)": "Cycling road (Olympic).svg",
+    "Escalade (CLB)": "Cycling road (Olympic).svg",
+    "Cyclisme sur piste (CTR)": "Cycling road (Olympic).svg",
+    "Skateboard (SKB)": "BMX Racing (Olympic).svg",
   };
 
-  return sportsImg[sport] ? "./img/sports_logo/" + sportsImg[sport] : "./img/doubleP24_logo.png";
+  let image = sportsImg[sport];
+  if (image === undefined) {
+    Object.keys(sportsImg).forEach((key) => {
+      if (sport.includes(key)) {
+        image = sportsImg[key];
+      }
+    });
+  }
+
+  return image ? "./img/sports_logo/" + image : "./img/doubleP24_logo.png";
 }
 
 function getFormatedDate(date) {
-  console.log(date);
   const daysOfWeek = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
   const months = [
     "janvier",

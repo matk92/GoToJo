@@ -3,7 +3,7 @@ import { BrowserLink } from "../core/BrowserRouter.js";
 export default function Page404() {
   return {
     head: ["<title>Page non trouvée</title>"],
-    type: "body",
+    type: "div",
     children: [
       {
         type: "div",
@@ -22,7 +22,7 @@ export default function Page404() {
             props: {
               width: "169.5px", // 226px * 0.75 = 169.5px
               height: "46.5px", // 62px * 0.75 = 46.5px
-              src: "img/LogoGoToJo.png",
+              src: "/img/LogoGoToJo.png",
               alt: "img logo",
             },
           },

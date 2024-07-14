@@ -13,6 +13,18 @@ body {
   color: #fff0da;
 }
 
+a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0078d0;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 h1 {
   margin: 0;
 }

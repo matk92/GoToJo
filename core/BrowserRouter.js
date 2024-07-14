@@ -3,12 +3,10 @@ const BrowserRouter = function (routes, rootElement) {
     const path = location.pathname;
     const structure = routes[path] ?? routes["*"];
 
-    if (rootElement.childNodes.length) {
+    if (rootElement.childNodes.length > 0) {
       rootElement.replaceChild(this.renderStructure(structure), rootElement.childNodes[0]);
     } else rootElement.appendChild(this.renderStructure(structure));
   };
-
-  generatePage();
 
   const oldPushState = history.pushState;
   history.pushState = function (state, title, url) {
@@ -17,6 +15,7 @@ const BrowserRouter = function (routes, rootElement) {
   };
 
   window.onpopstate = generatePage;
+  generatePage();
 };
 
 export const BrowserLink = function (props) {

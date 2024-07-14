@@ -1,7 +1,8 @@
 import { SportCard } from "../components/SportCard.js";
 import DOMPlugin from "../core/DOMPlugin.js";
 
-export default function SportsList(selectedDate = undefined) {
+// On le passe en paramètre la carte pour pouvoir interagir avec
+export default function SportsList(map, selectedDate = undefined) {
   return new Promise(async (resolve, reject) => {
     const url =
       "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=63";
@@ -26,7 +27,17 @@ export default function SportsList(selectedDate = undefined) {
 
     function changeDate(event) {
       let date = event.target.value;
-      DOMPlugin.reRender("sportsList", SportsList(date));
+      DOMPlugin.reRender("sportsList", SportsList(map, date));
+    }
+
+    function onClickLocation(sport) {
+      const element = document.getElementById("map-and-iframe-container");
+      const offsetTop = 70; // adjust the offset value as needed
+      window.scrollBy({
+        top: element.getBoundingClientRect().top - offsetTop,
+        behavior: "smooth",
+      });
+      map.showPosition(sport.point_geo.lat, sport.point_geo.lon, `<b>${sport.nom_site}</b><br>${sport.sports}`);
     }
 
     resolve({
@@ -133,7 +144,9 @@ export default function SportsList(selectedDate = undefined) {
               "align-items": "center",
             },
           },
-          children: eventsList.filter((event) => event.start_date === selectedDate).map((sport) => SportCard(sport)),
+          children: eventsList
+            .filter((event) => event.start_date === selectedDate)
+            .map((sport) => SportCard(sport, () => onClickLocation(sport))),
         },
       ],
     });

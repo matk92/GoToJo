@@ -1,6 +1,6 @@
 class MapPlugin {
   map = null;
-  marker = null;
+  markers = [];
 
   initMap = () => {
     // partie de code qui permet de mettre paris par défaut sur la carte
@@ -14,7 +14,7 @@ class MapPlugin {
 
   locateMe = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition((res) => this.showPosition(res.coords.latitude, res.coords.longitude));
     } else {
       document.getElementById("error").innerHTML =
         "La géolocalisation n'est pas prise en charge par ce navigateur. " <
@@ -25,17 +25,18 @@ class MapPlugin {
 
   showPosition = (latitude, longitude, description) => {
     if (this.map) {
-      if (this.marker && this.map.hasLayer(this.marker)) {
-        this.map.removeLayer(this.marker);
-        this.marker = null;
+      let marker = this.markers.find((e) => e.getLatLng().lat === latitude && e.getLatLng().lng === longitude);
+      if (marker) {
+        this.map.removeLayer(marker);
+        this.markers = this.markers.filter((e) => e !== marker);
       } else {
         this.map.setView([latitude, longitude], 13); // Update the position of the map
-        this.marker = L.marker([latitude, longitude]).addTo(this.map);
+        marker = L.marker([latitude, longitude]).addTo(this.map);
 
-        console.log(this.marker);
         if (description) {
-          bercyMarker.bindPopup(description).openPopup();
+          marker.bindPopup(description).openPopup();
         }
+        this.markers.push(marker);
       }
     }
   };

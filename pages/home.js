@@ -5,10 +5,9 @@ import SportsList from "../sections/SportsList.js";
 
 export default function Home() {
   const map = new MapPlugin();
-  console.log(map);
   const sports = [
     { name: "Basketball", latitude: 48.8382, longitude: 2.3782, description: "<b>Arena Bercy</b><br>Basketball" },
-    { name: "Rugby", letitude: 48.924459, longitude: 2.360164, description: "<b>Stade de France</b><br>Rugby" },
+    { name: "Rugby", latitude: 48.924459, longitude: 2.360164, description: "<b>Stade de France</b><br>Rugby" },
     { name: "Natation" },
     { name: "Tennis" },
     { name: "Athlétisme" },
@@ -22,7 +21,7 @@ export default function Home() {
       '<link rel="stylesheet" href="styles/test.css" />',
       '<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />',
     ],
-    type: "body",
+    type: "div",
     children: [
       Header(),
       {
@@ -118,6 +117,7 @@ export default function Home() {
               {
                 type: "div",
                 props: {
+                  id: "map-and-iframe-container",
                   class: "map-and-iframe-container",
                 },
                 children: [
@@ -198,7 +198,7 @@ export default function Home() {
                   },
                 ],
               },
-              SportsList(),
+              SportsList(map),
             ],
           },
         ],
