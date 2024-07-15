@@ -1,3 +1,5 @@
+import SearchBar from "../components/SearchBar.js";
+import DOMPlugin from "../core/DOMPlugin.js";
 import MapPlugin from "../core/MapPlugin.js";
 import Footer from "../sections/Footer.js";
 import Header from "../sections/Header.js";
@@ -14,6 +16,17 @@ export default function Home() {
     { name: "Volleyball" },
     { name: "Handball" },
   ];
+
+  const url =
+    "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=63";
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((eventsList) => {
+      DOMPlugin.reRender("sportsList", SportsList(map, eventsList));
+      DOMPlugin.reRender("search-bar", SearchBar(eventsList));
+    })
+    .catch(console.error);
 
   return {
     head: [
@@ -62,6 +75,7 @@ export default function Home() {
                     props: {
                       style: {
                         "font-size": "2.5rem",
+                        "flex-grow": "1",
                       },
                     },
                     children: [
@@ -71,47 +85,7 @@ export default function Home() {
                       },
                     ],
                   },
-                  {
-                    type: "div",
-                    props: {
-                      class: "search-bar",
-                    },
-                    children: [
-                      {
-                        type: "input",
-                        events: {
-                          keydown: [
-                            (event) => {
-                              if (event.key === "Enter") {
-                                event.preventDefault();
-                                map.onSearch(event);
-                              }
-                            },
-                          ],
-                        },
-                        props: {
-                          type: "text",
-                          id: "location",
-                          placeholder: "lieux, sports",
-                        },
-                      },
-                      {
-                        type: "button",
-                        props: {
-                          type: "submit",
-                        },
-                        children: [
-                          {
-                            type: "img",
-                            props: {
-                              src: "img/loupe.svg",
-                              alt: "Search",
-                            },
-                          },
-                        ],
-                      },
-                    ],
-                  },
+                  SearchBar(),
                 ],
               },
               {

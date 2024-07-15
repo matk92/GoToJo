@@ -124,7 +124,7 @@ export const SportCard = function (sport, onClickLocation) {
 function getSportImage(sport) {
   console.log(sport);
   const sportsImg = {
-    "Football (FBL)": "Cycling road (Olympic).svg",
+    "Football (FBL)": "Beach volleyball (Olympic).svg",
     "Para Triathlon (PTRI)": "Athletics (Olympic).svg",
     "Basketball fauteuil (PWBK)": "Basketball (Olympic).svg",
     "Athlétisme - arrivée Marathon (ATM), Cyclisme sur route - départ Contre-la-montre (CRD), Tir à l'arc (ARC)":
@@ -165,6 +165,7 @@ function getSportImage(sport) {
     "Escalade (CLB)": "Cycling road (Olympic).svg",
     "Cyclisme sur piste (CTR)": "Cycling road (Olympic).svg",
     "Skateboard (SKB)": "BMX Racing (Olympic).svg",
+    "Athlétisme (ATH)": "Athletics (Olympic).svg",
   };
 
   let image = sportsImg[sport];
