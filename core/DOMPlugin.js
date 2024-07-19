@@ -72,6 +72,10 @@ const DOMPlugin = {
   reRender: async function (elementId, newStructure) {
     let element = document.getElementById(elementId);
 
+    if (!element) {
+      console.error(`Element with id ${elementId} not found`);
+    }
+
     if (newStructure instanceof Promise) {
       newStructure.then((resolvedStructure) => element.replaceWith(this.renderStructure(resolvedStructure)));
     } else element.replaceWith(this.renderStructure(newStructure));

@@ -9,7 +9,6 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
     eventsList.sort((a, b) => {
       return new Date(a.start_date) - new Date(b.start_date);
     });
-    console.log(eventsList);
 
     if (selectedDate === undefined) selectedDate = "2024-07-27";
 

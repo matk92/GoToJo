@@ -122,7 +122,6 @@ export const SportCard = function (sport, onClickLocation) {
 };
 
 function getSportImage(sport) {
-  console.log(sport);
   const sportsImg = {
     "Football (FBL)": "Beach volleyball (Olympic).svg",
     "Para Triathlon (PTRI)": "Athletics (Olympic).svg",

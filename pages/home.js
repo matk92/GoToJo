@@ -7,15 +7,6 @@ import SportsList from "../sections/SportsList.js";
 
 export default function Home() {
   const map = new MapPlugin();
-  const sports = [
-    { name: "Basketball", latitude: 48.8382, longitude: 2.3782, description: "<b>Arena Bercy</b><br>Basketball" },
-    { name: "Rugby", latitude: 48.924459, longitude: 2.360164, description: "<b>Stade de France</b><br>Rugby" },
-    { name: "Natation" },
-    { name: "Tennis" },
-    { name: "Athlétisme" },
-    { name: "Volleyball" },
-    { name: "Handball" },
-  ];
 
   const url =
     "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=63";
@@ -24,7 +15,7 @@ export default function Home() {
     .then((response) => response.json())
     .then((eventsList) => {
       DOMPlugin.reRender("sportsList", SportsList(map, eventsList));
-      DOMPlugin.reRender("search-bar", SearchBar(eventsList));
+      DOMPlugin.reRender("search-bar", SearchBar(map, eventsList));
     })
     .catch(console.error);
 
@@ -137,40 +128,6 @@ export default function Home() {
                   src: "https://unpkg.com/leaflet/dist/leaflet.js",
                   onload: () => map.initMap(),
                 },
-              },
-              {
-                type: "section",
-                props: {
-                  class: "events-section",
-                },
-                children: [
-                  {
-                    type: "div",
-                    props: {
-                      class: "events-filters",
-                    },
-                    children: sports.map((sport) => ({
-                      type: "button",
-                      props: {
-                        onclick: (event) => {
-                          if (sport.latitude && sport.longitude)
-                            map.showPosition(sport.latitude, sport.longitude, sport.description || sport.name);
-                          if (event.target.classList.contains("clicked")) {
-                            event.target.classList.remove("clicked");
-                          } else {
-                            event.target.classList.add("clicked");
-                          }
-                        },
-                      },
-                      children: [
-                        {
-                          type: "TEXT_NODE",
-                          content: sport.name,
-                        },
-                      ],
-                    })),
-                  },
-                ],
               },
               SportsList(map),
             ],
