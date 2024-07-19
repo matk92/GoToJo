@@ -1,8 +1,11 @@
-export default {
+import Footer from "../sections/Footer.js";
+
+export default function Medals() {
+  return {
     head: [
       '<meta charset="UTF-8">',
       '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      '<title>Médailles</title>',
+      "<title>Médailles</title>",
       '<link rel="stylesheet" href="../styles/medals.css">',
     ],
     type: "body",
@@ -10,7 +13,18 @@ export default {
       {
         type: "div",
         props: {
-          class: "container",
+          style: {
+            width: "100%",
+            display: "flex",
+            "flex-direction": "column",
+            "align-items": "center",
+            padding: "0 20px",
+            "margin": "0 auto",
+            "max-width": "1200px",
+            "text-align": "center",
+            "margin-top": "20px",
+            "min-height": "100vh",
+          },
         },
         children: [
           {
@@ -25,7 +39,11 @@ export default {
           {
             type: "div",
             props: {
-              class: "date",
+              style: {
+                "font-size": "1.2em",
+                color: "#76E1A7",
+                "margin-bottom": "20px",
+              },
             },
             children: [
               {
@@ -36,9 +54,21 @@ export default {
           },
           {
             type: "table",
+            props: {
+              style: {
+                width: "100%",
+                "border-collapse": "separate",
+                "border-spacing": "0 29px",
+              },
+            },
             children: [
               {
                 type: "thead",
+                props: {
+                  style: {
+                    "background-color": "rgba(173, 163, 163, 0.158)",
+                  },
+                },
                 children: [
                   {
                     type: "tr",
@@ -127,20 +157,7 @@ export default {
           },
         ],
       },
-      {
-        type: "footer",
-        children: [
-          {
-            type: "p",
-            children: [
-              {
-                type: "TEXT_NODE",
-                content: "Politique des cookies | Politique des cookies | Politique des cookies | Politique des cookies",
-              },
-            ],
-          },
-        ],
-      },
+      Footer(),
       {
         type: "script",
         props: {
@@ -149,4 +166,4 @@ export default {
       },
     ],
   };
-  
+}

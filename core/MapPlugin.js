@@ -1,6 +1,8 @@
 class MapPlugin {
   map = null;
   markers = [];
+  redIcon = null;
+  redMarkers = [];
 
   initMap = () => {
     // partie de code qui permet de mettre paris par défaut sur la carte
@@ -10,6 +12,24 @@ class MapPlugin {
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
+
+    // add red points
+    this.redIcon = new L.Icon({
+      iconUrl: "/img/red_dot.svg",
+      iconSize: [10, 10],
+      iconAnchor: [10, 10],
+    });
+    this.redMarkers.forEach((marker) => {
+      this.addRedMarker(marker.lat, marker.lng, marker.title, marker.description);
+    });
+  };
+
+  addRedMarker = (lat, lng, title, description) => {
+    if (this.redIcon !== null) {
+      L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(`<b>${title}</b><br>${description}`);
+    } else {
+      this.redMarkers.push({ lat, lng, title, description });
+    }
   };
 
   locateMe = () => {
@@ -23,7 +43,7 @@ class MapPlugin {
     }
   };
 
-  showPosition = (latitude, longitude, description) => {
+  showPosition = (latitude, longitude, title, description) => {
     if (this.map) {
       let marker = this.markers.find((e) => e.getLatLng().lat === latitude && e.getLatLng().lng === longitude);
       if (marker) {
@@ -33,26 +53,26 @@ class MapPlugin {
         this.map.setView([latitude, longitude], 13); // Update the position of the map
         marker = L.marker([latitude, longitude]).addTo(this.map);
 
-        if (description) {
-          marker.bindPopup(description).openPopup();
+        if (title) {
+          marker.bindPopup(`<b>${title}</b><br>${description}`).openPopup();
         }
         this.markers.push(marker);
       }
     }
   };
 
-  onSearch = (event) => {
-    var searchValue = event.target.value.value.trim().toLowerCase();
+  onSearch = (search) => {
+    var searchValue = search.trim().toLowerCase();
     fetch("https://nominatim.openstreetmap.org/search?format=json&q=" + searchValue)
-      .then(function (response) {
+      .then((response) => {
         return response.json();
       })
-      .then(function (data) {
+      .then((data) => {
         if (data.length > 0) {
           var lat = data[0].lat;
           var lon = data[0].lon;
 
-          map.setView([lat, lon], 13);
+          this.showPosition(lat, lon, data[0].name, data[0].display_name);
         } else {
           alert('Aucun résultat trouvé pour "' + searchValue + '".');
         }

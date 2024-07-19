@@ -5,7 +5,7 @@ import DOMPlugin from "../core/DOMPlugin.js";
 export default function SportsList(map, eventsList, selectedDate = undefined) {
   let allDates = [];
   if (eventsList !== undefined) {
-    eventsList = eventsList.results;
+    if (eventsList.results !== undefined) eventsList = eventsList.results;
     eventsList.sort((a, b) => {
       return new Date(a.start_date) - new Date(b.start_date);
     });
@@ -21,7 +21,7 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
 
   function changeDate(event) {
     let date = event.target.value;
-    DOMPlugin.reRender("sportsList", SportsList(map, date));
+    DOMPlugin.reRender("sportsList", SportsList(map, eventsList, date));
   }
 
   function onClickLocation(sport) {
@@ -31,7 +31,7 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
       top: element.getBoundingClientRect().top - offsetTop,
       behavior: "smooth",
     });
-    map.showPosition(sport.point_geo.lat, sport.point_geo.lon, `<b>${sport.nom_site}</b><br>${sport.sports}`);
+    map.showPosition(sport.point_geo.lat, sport.point_geo.lon, sport.nom_site, sport.sports);
   }
 
   return {
@@ -128,7 +128,6 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
       },
       {
         type: "div",
-        head: ['<link rel="stylesheet" href="styles/sportCard.css" />'],
         props: {
           style: {
             display: "grid",

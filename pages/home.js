@@ -1,3 +1,4 @@
+import InteractiveMap from "../components/InteractiveMap.js";
 import SearchBar from "../components/SearchBar.js";
 import DOMPlugin from "../core/DOMPlugin.js";
 import MapPlugin from "../core/MapPlugin.js";
@@ -15,16 +16,36 @@ export default function Home() {
     .then((response) => response.json())
     .then((eventsList) => {
       DOMPlugin.reRender("sportsList", SportsList(map, eventsList));
-      DOMPlugin.reRender("search-bar", SearchBar(map, eventsList));
+
+      let sportsSearch = eventsList.results.map((sport) => ({
+        title: sport.sports,
+        label: sport.start_date + "  " + sport.nom_site,
+        longitude: sport.point_geo.lon,
+        latitude: sport.point_geo.lat,
+      }));
+
+      const url2 =
+        "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-boutiques-officielles/records?limit=99";
+
+      fetch(url2)
+        .then((response) => response.json())
+        .then((shopList) => {
+          let shopSearch = shopList.results.map((shop) => ({
+            title: shop.title,
+            label: shop.address,
+            longitude: shop.localisation_geographique.lon,
+            latitude: shop.localisation_geographique.lat,
+          }));
+          DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch]));
+
+          shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label));
+          sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
+        });
     })
     .catch(console.error);
 
   return {
-    head: [
-      "<title>Jeux Olympiques 2024</title>",
-      '<link rel="stylesheet" href="styles/test.css" />',
-      '<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />',
-    ],
+    head: ["<title>GoToJo 2024</title>", '<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />'],
     type: "div",
     children: [
       Header(),
@@ -58,7 +79,12 @@ export default function Home() {
               {
                 type: "div",
                 props: {
-                  class: "filters",
+                  style: {
+                    display: "flex",
+                    "justify-content": "space-between",
+                    "align-items": "center",
+                    "margin-bottom": "20px",
+                  },
                 },
                 children: [
                   {
@@ -79,56 +105,7 @@ export default function Home() {
                   SearchBar(),
                 ],
               },
-              {
-                type: "div",
-                props: {
-                  id: "map-and-iframe-container",
-                  class: "map-and-iframe-container",
-                },
-                children: [
-                  {
-                    type: "iframe",
-                    props: {
-                      id: "direction",
-                      src: "https://citymapper.com",
-                    },
-                  },
-                  {
-                    type: "div",
-                    props: {
-                      class: "mapholder",
-                      id: "mapholder",
-                    },
-                  },
-                  {
-                    type: "button",
-                    props: {
-                      onclick: map.locateMe,
-                      id: "locateMe",
-                      class: "locationButton",
-                    },
-                    children: [
-                      {
-                        type: "HTML_NODE",
-                        content:
-                          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"> <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" /> </svg>',
-                      },
-                      {
-                        type: "TEXT_NODE",
-                        content: "Locate me",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                type: "script",
-                props: {
-                  async: true,
-                  src: "https://unpkg.com/leaflet/dist/leaflet.js",
-                  onload: () => map.initMap(),
-                },
-              },
+              InteractiveMap(map),
               SportsList(map),
             ],
           },
