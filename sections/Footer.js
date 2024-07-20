@@ -33,7 +33,7 @@ export default function Footer() {
                 "object-fit": "contain",
               },
               width: "200px",
-              src: "./img/LogoGoToJo.png",
+              src: "/img/LogoGoToJo.png",
               alt: "logo",
             },
           },

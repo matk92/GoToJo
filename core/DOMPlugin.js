@@ -47,6 +47,10 @@ const DOMPlugin = {
       for (const eventName in structure.windowEvents) {
         for (const eventListeners of structure.windowEvents[eventName]) {
           window.addEventListener(eventName, eventListeners);
+          // subscribe to window popstate and remove event
+          window.addEventListener("popstate", () => {
+            window.removeEventListener(eventName, eventListeners);
+          });
         }
       }
     }

@@ -1,5 +1,15 @@
 // Carte qui affiche un sport, la date, le lieu et un logo
 export const SportCard = function (sport, onClickLocation) {
+  function mouseEnter(event) {
+    event.target.style.transform = "scale(1.02)";
+    event.target.style.boxShadow = "0px 0px 10px 5px #342E46";
+  }
+
+  function mouseLeave(event) {
+    event.target.style.transform = "";
+    event.target.style.boxShadow = "";
+  }
+
   return {
     type: "article",
     events: {
@@ -10,9 +20,12 @@ export const SportCard = function (sport, onClickLocation) {
           history.pushState(null, null, path);
         },
       ],
+      mouseenter: [mouseEnter],
+      mouseleave: [mouseLeave],
     },
     props: {
       style: {
+        transition: "all 0.3s",
         cursor: "pointer",
         height: "100%",
         position: "relative",
