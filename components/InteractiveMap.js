@@ -1,5 +1,4 @@
 export default function InteractiveMap(map) {
- 
   return {
     type: "div",
     props: {
@@ -7,7 +6,7 @@ export default function InteractiveMap(map) {
       style: {
         position: "sticky",
         width: "100%",
-        height: "40vw",
+        height: "50vw",
         "border-radius": "22px",
         border: "4px solid #342E46",
         "background-color": "#342E46",
@@ -16,13 +15,21 @@ export default function InteractiveMap(map) {
       },
     },
     children: [
-      // {
-      //   type: "iframe",
-      //   props: {
-      //     id: "direction",
-      //     src: "https://citymapper.com",
-      //   },
-      // },
+      {
+        type: "iframe",
+        props: {
+          id: "direction",
+          style: {
+            position: "absolute",
+            left: "20",
+            top: "0",
+            width: "35%",
+            height: "100%",
+            "z-index": "1000",
+          },
+          src: "https://citymapper.com",
+        },
+      },
       {
         type: "div",
         props: {

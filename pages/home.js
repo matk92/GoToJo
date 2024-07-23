@@ -62,7 +62,7 @@ export default function Home() {
 
     if (distance < 0) {
       clearInterval(interval);
-      document.querySelector(".countdown").innerText = "The event has started!";
+      document.querySelector(".countdown").innerText = "Les Jeux Olympiques Paris 2024 ont commencé !";
     }
   }
 
@@ -122,13 +122,14 @@ export default function Home() {
                     children: [
                       {
                         type: "TEXT_NODE",
-                        content: "Carte Interactive",
+                        content: "",
                       },
                     ],
                   },
                   SearchBar(),
                 ],
               },
+              InteractiveMap(map),
               {
                 type: "div",
                 props: {
@@ -138,13 +139,13 @@ export default function Home() {
                     gap: "10px",
                     "justify-content": "center",
                     "align-items": "center",
-                    "margin-bottom": "20px",
+                    "margin": "20px 0px",
                     "background-color": "#342E46",
                     "text-align": "center",
                     color: "#DAA520",
                     padding: "20px",
                     "border-radius": "25px",
-                    "font-weight": "800"
+                    "font-weight": "800",
                   },
                 },
                 children: [
@@ -155,8 +156,8 @@ export default function Home() {
                         "background-image": "url(./img/logo_JO.png)",
                         "background-size": "contain",
                         "background-repeat": "no-repeat",
-                        "width": "100px",
-                        "height": "100px",
+                        width: "100px",
+                        height: "100px",
                       },
                     },
                   },
@@ -197,7 +198,6 @@ export default function Home() {
                   },
                 ],
               },
-              InteractiveMap(map),
               SportsList(map),
             ],
           },
