@@ -49,24 +49,31 @@ export default function Home() {
   function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
-
+  
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
-
+  
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+  
+    if (daysElement) daysElement.innerText = days;
+    if (hoursElement) hoursElement.innerText = hours;
+    if (minutesElement) minutesElement.innerText = minutes;
+    if (secondsElement) secondsElement.innerText = seconds;
+  
     if (distance < 0) {
       clearInterval(interval);
-      document.querySelector(".countdown").innerText = "Les Jeux Olympiques Paris 2024 ont commencé !";
+      const countdownElement = document.querySelector(".countdown");
+      if (countdownElement) countdownElement.innerText = "Les Jeux Olympiques Paris 2024 ont commencé !";
     }
   }
-
+  
   const interval = setInterval(updateCountdown, 1000);
+  
 
   return {
     head: ["<title>GoToJo 2024</title>", '<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />'],
