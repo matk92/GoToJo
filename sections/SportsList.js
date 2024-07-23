@@ -1,3 +1,4 @@
+import Spinner from "../components/Spinner.js";
 import { SportCard } from "../components/SportCard.js";
 import DOMPlugin from "../core/DOMPlugin.js";
 
@@ -6,17 +7,16 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
   let allDates = [];
   if (eventsList !== undefined) {
     if (eventsList.results !== undefined) eventsList = eventsList.results;
-    eventsList.sort((a, b) => {
-      return new Date(a.start_date) - new Date(b.start_date);
-    });
-
-    if (selectedDate === undefined) selectedDate = "2024-07-27";
-
     for (let event of eventsList) {
       if (!allDates.includes(event.start_date)) {
         allDates.push(event.start_date);
       }
     }
+    eventsList.sort((a, b) => {
+      return new Date(b.start_date) - new Date(a.start_date);
+    });
+
+    if (selectedDate === undefined) selectedDate = "2024-07-27";
   }
 
   function changeDate(event) {
@@ -149,13 +149,10 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
                     },
                   ],
                 },
-                {
-                  type: "div",
-                  // TODO spinner
-                },
+                Spinner(),
               ]
             : eventsList
-                .filter((event) => event.start_date === selectedDate)
+                .filter((event) => event.start_date <= selectedDate && event.end_date >= selectedDate)
                 .map((sport) => SportCard(sport, () => onClickLocation(sport))),
       },
     ],

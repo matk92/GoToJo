@@ -38,7 +38,7 @@ export default function Home() {
           }));
           DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch]));
 
-          shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label));
+          shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
           sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
         });
     })

@@ -28,6 +28,7 @@ export const SportCard = function (sport, onClickLocation) {
         transition: "all 0.3s",
         cursor: "pointer",
         height: "100%",
+        width: "100%",
         position: "relative",
         margin: "0 auto",
         "background-color": "#fff0da",
@@ -36,7 +37,7 @@ export const SportCard = function (sport, onClickLocation) {
         "text-align": "left",
         "border-radius": "2rem",
         padding: "1.5rem",
-        "padding-right": "6rem",
+        "padding-right": "4.5rem",
         "max-width": "375px",
       },
     },
@@ -56,7 +57,7 @@ export const SportCard = function (sport, onClickLocation) {
               style: {
                 margin: "0",
                 "font-size": "14px",
-                "font-weight": "800",
+                "font-weight": "600",
                 "text-overflow": "ellipsis",
                 "white-space": "nowrap",
                 overflow: "hidden",
@@ -65,7 +66,7 @@ export const SportCard = function (sport, onClickLocation) {
             children: [
               {
                 type: "TEXT_NODE",
-                content: sport.sports.toUpperCase(),
+                content: "du " + getFormatedDate(sport.start_date) + " au " + getFormatedDate(sport.end_date),
               },
             ],
           },
@@ -74,14 +75,17 @@ export const SportCard = function (sport, onClickLocation) {
             class: "barlow-extrabold",
             props: {
               style: {
-                "font-size": "32px",
+                "font-size": "28px",
                 margin: "10px 0",
+                "text-overflow": "ellipsis",
+                "overflow": "hidden",
+                "height": "6.5rem",
               },
             },
             children: [
               {
                 type: "TEXT_NODE",
-                content: getFormatedDate(sport.start_date),
+                content: sport.sports,
               },
             ],
           },
@@ -120,7 +124,7 @@ export const SportCard = function (sport, onClickLocation) {
           style: {
             "object-fit": "contain",
             position: "absolute",
-            opacity: "0.35",
+            opacity: "0.25",
             right: "-60px",
             bottom: "-80px",
           },
@@ -194,23 +198,9 @@ function getSportImage(sport) {
 
 function getFormatedDate(date) {
   const daysOfWeek = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-  const months = [
-    "janvier",
-    "février",
-    "mars",
-    "avril",
-    "mai",
-    "juin",
-    "juillet",
-    "août",
-    "septembre",
-    "octobre",
-    "novembre",
-    "décembre",
-  ];
-
+  
   const [year, month, day] = date.split(" ")[0].split("-");
-  const formattedDate = `${daysOfWeek[new Date(date).getDay()]} ${day} ${months[month - 1]} ${year}`;
+  const formattedDate = `${daysOfWeek[new Date(date).getDay()]} ${day}/${month}`;
 
   return formattedDate;
 }

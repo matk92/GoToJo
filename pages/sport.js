@@ -9,16 +9,19 @@ export default function Sport(params, data = undefined, map) {
   if (map === undefined) {
     map = new MapPlugin();
   }
-  // Si il n'y as pas de data on appelle les API pour recuperer de l'info
+
+  console.log(data);
+
+  // Si il n'y as pas de data on appelle les API pour recuperer de l'informations
   if (data == undefined) {
     fetch(
       "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-sites-de-competition/records?limit=63"
     )
       .then((response) => response.json())
-      .then((eventsList) => {
+      .then(async (eventsList) => {
         let sportsSearch = eventsList.results.map((sport) => ({
           title: sport.sports,
-          label: sport.start_date + "  " + sport.nom_site,
+          label: sport.nom_site,
           longitude: sport.point_geo.lon,
           latitude: sport.point_geo.lat,
         }));
@@ -26,6 +29,8 @@ export default function Sport(params, data = undefined, map) {
         let sport = eventsList.results.find((e) => e.sports == params.name);
         if (sport == undefined) {
           sport = null;
+          console.error("Sport not found :" + params.name);
+          return;
         }
 
         fetch(
@@ -40,18 +45,12 @@ export default function Sport(params, data = undefined, map) {
               latitude: shop.localisation_geographique.lat,
             }));
 
-            shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label));
+            shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
             sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
 
-            DOMPlugin.reRender("sport_page", Sport(params, sport, map));
+            DOMPlugin.reRender("sport_page", Sport(params, { sport: sport }, map));
             setTimeout(() => {
-              if (sport)
-                map.showPosition(
-                  sport.point_geo.lat,
-                  sport.point_geo.lon,
-                  sport.sports,
-                  sport.start_date + " " + sport.nom_site
-                );
+              map.showPosition(sport.point_geo.lat, sport.point_geo.lon, sport.sports, sport.nom_site);
             }, 200);
           });
       });
@@ -112,6 +111,8 @@ export default function Sport(params, data = undefined, map) {
                         style: {
                           display: "flex",
                           "flex-direction": "column",
+                          "max-width": "75%",
+                          "overflow": "hidden",
                         },
                       },
                       children: [
@@ -121,7 +122,7 @@ export default function Sport(params, data = undefined, map) {
                             style: {
                               margin: "0",
                               "font-size": "1rem",
-                              "font-weight": "800",
+                              "font-weight": "600",
                               "text-overflow": "ellipsis",
                               "white-space": "nowrap",
                               overflow: "hidden",
@@ -130,7 +131,11 @@ export default function Sport(params, data = undefined, map) {
                           children: [
                             {
                               type: "TEXT_NODE",
-                              content: data.sports.toUpperCase(),
+                              content:
+                                "du " +
+                                getFormatedDate(data.sport.start_date) +
+                                " au " +
+                                getFormatedDate(data.sport.end_date),
                             },
                           ],
                         },
@@ -139,14 +144,17 @@ export default function Sport(params, data = undefined, map) {
                           class: "barlow-extrabold",
                           props: {
                             style: {
-                              "font-size": "3rem",
+                              "font-size": "2.5rem",
                               margin: "10px 0",
+                              "text-overflow": "ellipsis",
+                              "white-space": "nowrap",
+                              overflow: "hidden",
                             },
                           },
                           children: [
                             {
                               type: "TEXT_NODE",
-                              content: getFormatedDate(data.start_date),
+                              content: data.sport.sports,
                             },
                           ],
                         },
@@ -157,13 +165,18 @@ export default function Sport(params, data = undefined, map) {
                               (e) => {
                                 e.stopPropagation();
                                 map.showPosition(
-                                  data.point_geo.lat,
-                                  data.point_geo.lon,
-                                  data.sports,
-                                  data.start_date + " " + data.nom_site
+                                  data.sport.point_geo.lat,
+                                  data.sport.point_geo.lon,
+                                  data.sport.sports,
+                                  data.sport.start_date + " " + data.sport.nom_site
                                 );
                               },
                             ],
+                          },
+                          props: {
+                            style: {
+                              width: "fit-content",
+                            },
                           },
                           children: [
                             {
@@ -176,7 +189,7 @@ export default function Sport(params, data = undefined, map) {
                               children: [
                                 {
                                   type: "TEXT_NODE",
-                                  content: data.nom_site,
+                                  content: data.sport.nom_site,
                                 },
                               ],
                             },
@@ -196,8 +209,8 @@ export default function Sport(params, data = undefined, map) {
                         },
                         width: "350px",
                         height: "350px",
-                        src: getSportImage(data.sports),
-                        alt: data.sports,
+                        src: getSportImage(data.sport.sports),
+                        alt: data.sport.sports,
                       },
                     },
                   ],
@@ -211,9 +224,17 @@ export default function Sport(params, data = undefined, map) {
                   },
                   children: [InteractiveMap(map)],
                 },
+                SportDetails(data.sport, "informations"),
               ],
       },
       Footer(),
+      {
+        type: "script",
+        props: {
+          async: true,
+          src: "https://cse.google.com/cse.js?cx=639a89b0e9e4343b0",
+        },
+      },
     ],
   };
 }
@@ -297,4 +318,127 @@ function getFormatedDate(date) {
   const formattedDate = `${daysOfWeek[new Date(date).getDay()]} ${day} ${months[month - 1]} ${year}`;
 
   return formattedDate;
+}
+
+function SportDetails(sport, detail = "informations", data) {
+  if (!data) {
+    if (detail == "informations") {
+    } else if (detail == "images") {
+      const encodedName = encodeURIComponent(sport.nom_site);
+      // AIzaSyCHzRzxCzN42920CeHDKr1oLnTKciqDIpU
+      // AIzaSyA3PYeK4r1vnaCPqQ7hC4a9XjGmfqg_4_0
+      fetch(
+        "https://www.googleapis.com/customsearch/v1?key=AIzaSyCHzRzxCzN42920CeHDKr1oLnTKciqDIpU&cx=639a89b0e9e4343b0&q=" +
+          encodedName +
+          "&searchType=image"
+      )
+        .then((response) => response.json())
+        .then((images) => {
+          DOMPlugin.reRender("sport_details", SportDetails(sport, detail, { images: images }));
+        });
+    }
+  }
+
+  return {
+    type: "div",
+    props: {
+      id: "sport_details",
+      style: {
+        "max-width": "1200px",
+        margin: "20px auto",
+      },
+    },
+    children: [
+      getDetailsTitles(detail, (tab) => DOMPlugin.reRender("sport_details", SportDetails(sport, tab))),
+      {
+        type: "hr",
+        props: {
+          style: {
+            width: "100%",
+            opacity: "0.5",
+            margin: "5px 0",
+          },
+        },
+      },
+      getDetailSection(detail, data),
+    ],
+  };
+}
+
+function getDetailsTitles(detail, onclick) {
+  let tabs = ["Informations", "Images"].map((tab) => ({
+    type: "button",
+    props: {
+      style: {
+        "background-color": "transparent",
+        color: "#fff0da",
+        border: detail == tab.toLowerCase() ? "2px solid #fff0da" : "none",
+        "border-radius": "10px",
+        padding: "8px 16px",
+        cursor: "pointer",
+        opacity: detail == tab.toLowerCase() ? "1" : "0.75",
+        "font-size": detail == tab.toLowerCase() ? "1.25rem" : "1rem",
+        "font-weight": "bold",
+      },
+      onclick: (e) => {
+        e.stopPropagation();
+        onclick(tab.toLocaleLowerCase());
+      },
+    },
+    children: [
+      {
+        type: "TEXT_NODE",
+        content: tab,
+      },
+    ],
+  }));
+
+  return {
+    type: "div",
+    props: {
+      style: {
+        display: "flex",
+        "align-items": "center",
+        gap: "10px",
+      },
+    },
+    children: tabs,
+  };
+}
+
+function getDetailSection(detail, data) {
+  if (data == undefined) {
+    return Spinner();
+  }
+
+  if (detail == "info") {
+    console.log("informations");
+  }
+
+  if (detail == "images" && data.images)
+    return {
+      type: "div",
+      props: {
+        style: {
+          padding: "20px",
+          display: "grid",
+          "grid-template-columns": "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "10px",
+        },
+      },
+      children: data.images.items.map((image) => ({
+        type: "img",
+        props: {
+          src: image.link,
+          style: {
+            width: "100%",
+            height: "100%",
+            border: "2px solid #342e46",
+            "border-radius": "10px",
+            "object-fit": "cover",
+            "margin-top": "20px",
+          },
+        },
+      })),
+    };
 }

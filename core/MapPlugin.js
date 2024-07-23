@@ -1,8 +1,8 @@
 class MapPlugin {
   map = null;
-  markers = [];
   redIcon = null;
-  redMarkers = [];
+  cyanIcon = null;
+  markers = [];
 
   initMap = () => {
     // partie de code qui permet de mettre paris par défaut sur la carte
@@ -19,16 +19,23 @@ class MapPlugin {
       iconSize: [10, 10],
       iconAnchor: [10, 10],
     });
-    this.redMarkers.forEach((marker) => {
-      this.addRedMarker(marker.lat, marker.lng, marker.title, marker.description);
+    this.cyanIcon = new L.Icon({
+      iconUrl: "/img/cyan_dot.svg",
+      iconSize: [10, 10],
+      iconAnchor: [10, 10],
+    });
+    this.markers.forEach((marker) => {
+      this.addRedMarker(marker.lat, marker.lng, marker.title, marker.description, marker.color);
     });
   };
 
-  addRedMarker = (lat, lng, title, description) => {
-    if (this.redIcon !== null) {
+  addRedMarker = (lat, lng, title, description, color = "red") => {
+    if (color == "red" && this.redIcon !== null) {
       L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(`<b>${title}</b><br>${description}`);
+    } else if (color == "cyan" && this.cyanIcon !== null) {
+      L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(`<b>${title}</b><br>${description}`);
     } else {
-      this.redMarkers.push({ lat, lng, title, description });
+      this.markers.push({ lat, lng, title, description, color });
     }
   };
 
@@ -45,18 +52,11 @@ class MapPlugin {
 
   showPosition = (latitude, longitude, title, description) => {
     if (this.map) {
-      let marker = this.markers.find((e) => e.getLatLng().lat === latitude && e.getLatLng().lng === longitude);
-      if (marker) {
-        this.map.removeLayer(marker);
-        this.markers = this.markers.filter((e) => e !== marker);
-      } else {
-        this.map.setView([latitude, longitude], 13); // Update the position of the map
-        marker = L.marker([latitude, longitude]).addTo(this.map);
+      this.map.setView([latitude, longitude], 13); // Update the position of the map
+      let marker = L.marker([latitude, longitude]).addTo(this.map);
 
-        if (title) {
-          marker.bindPopup(`<b>${title}</b><br>${description}`).openPopup();
-        }
-        this.markers.push(marker);
+      if (title) {
+        marker.bindPopup(`<b>${title}</b><br>${description}`).openPopup();
       }
     }
   };

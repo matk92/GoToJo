@@ -18,7 +18,7 @@ const BrowserRouter = function (routes, rootElement) {
 
               if (match) {
                 params = routeParamsKeys.reduce((acc, key, index) => {
-                  acc[key] = match[index + 1].replaceAll("%20", " ");
+                  acc[key] = decodeURIComponent(match[index + 1]);
                   return acc;
                 }, {});
 

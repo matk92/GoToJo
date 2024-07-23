@@ -16,6 +16,13 @@ export default function InteractiveMap(map) {
       },
     },
     children: [
+      // {
+      //   type: "iframe",
+      //   props: {
+      //     id: "direction",
+      //     src: "https://citymapper.com",
+      //   },
+      // },
       {
         type: "div",
         props: {
