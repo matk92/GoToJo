@@ -1,0 +1,177 @@
+[
+    {
+      "Sport": ["Basketball", "Gymnastique artistique", "Trampoline"],
+      "Lieu": "Arena Bercy",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Judo", "Lutte"],
+      "Lieu": "Arena Champ-de-Mars",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Boxe", "Pentathlon moderne"],
+      "Lieu": "Arena Paris Nord",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Haltérophilie", "Handball", "Tennis de table", "Volleyball"],
+      "Lieu": "Arena Paris Sud",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Badminton", "Gymnastique rythmique"],
+      "Lieu": "Arena Porte de La Chapelle",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Natation synchronisée", "Plongeon", "Water-Polo"],
+      "Lieu": "Centre Aquatique",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Tir"],
+      "Lieu": "Centre National de Tir de Châteauroux",
+      "Point de vue intéressant": "compliquée d'accès"
+    },
+    {
+      "Sport": ["Pentathlon moderne", "Sports Équestres"],
+      "Lieu": "Château de Versailles",
+      "Point de vue intéressant": "château de versailles"
+    },
+    {
+      "Sport": ["VTT"],
+      "Lieu": "Colline d'Elancourt",
+      "Point de vue intéressant": "colline d'elancourt"
+    },
+    {
+      "Sport": ["Escrime", "Taekwondo"],
+      "Lieu": "Grand Palais",
+      "Point de vue intéressant": "intérieur de la salle"
+    },
+    {
+      "Sport": ["Athlétisme"],
+      "Lieu": "Hôtel de Ville",
+      "Point de vue intéressant": "hôtel de ville"
+    },
+    {
+      "Sport": ["Athlétisme", "Cyclisme sur route", "Tir à l'arc"],
+      "Lieu": "Invalides",
+      "Point de vue intéressant": "invalides"
+    },
+    {
+      "Sport": ["Basketball 3x3", "Breaking", "Cyclisme BMX Freestyle", "Skateboard"],
+      "Lieu": "Parc Urbain La Concorde",
+      "Point de vue intéressant": "Hôtel de Crillon, A Rosewood Hotel"
+    },
+    {
+      "Sport": ["Golf"],
+      "Lieu": "Golf National",
+      "Point de vue intéressant": "golf national"
+    },
+    {
+      "Sport": ["Voile"],
+      "Lieu": "Marina de Marseille",
+      "Point de vue intéressant": ["Hotel nhow Marseille", "La Maison Mickael", "Le Comptoir Marseillais"]
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Parc des Princes",
+      "Point de vue intéressant": "Parc des Princes"
+    },
+    {
+      "Sport": ["Natation", "Water-Polo"],
+      "Lieu": "Paris La Défense Arena",
+      "Point de vue intéressant": "Paris La Défense Arena"
+    },
+    {
+      "Sport": ["Cyclisme sur route", "Marathon Swimming", "Triathlon"],
+      "Lieu": "Pont Alexandre III",
+      "Point de vue intéressant": "Pont Alexandre III"
+    },
+    {
+      "Sport": ["Escalade sportive"],
+      "Lieu": "Site d'escalade Bourget",
+      "Point de vue intéressant": "Site d'escalade Bourget"
+    },
+    {
+      "Sport": ["Cycling BMX Racing"],
+      "Lieu": "Stade BMX de Saint-Quentin-en-Yvelines",
+      "Point de vue intéressant": "Stade BMX de Saint-Quentin-en-Yvelines"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade de Bordeaux",
+      "Point de vue intéressant": "Stade de Bordeaux"
+    },
+    {
+      "Sport": ["Athlétisme", "Rugby Sevens"],
+      "Lieu": "Stade de France",
+      "Point de vue intéressant": "Stade de France"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade de la Beaujoire",
+      "Point de vue intéressant": "Stade de la Beaujoire"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade de Lyon",
+      "Point de vue intéressant": "Stade de Lyon"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade de Marseille",
+      "Point de vue intéressant": "Stade de Marseille"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade de Nice",
+      "Point de vue intéressant": "Stade de Nice"
+    },
+    {
+      "Sport": ["Football"],
+      "Lieu": "Stade Geoffroy-Guichard",
+      "Point de vue intéressant": "Stade Geoffroy-Guichard"
+    },
+    {
+      "Sport": ["Aviron", "Canoe Flatwater", "Canoe Slalom"],
+      "Lieu": "Stade Nautique de Vaires-sur-Marne",
+      "Point de vue intéressant": "Stade Nautique de Vaires-sur-Marne"
+    },
+    {
+      "Sport": ["Basketball", "Handball"],
+      "Lieu": "Stade Pierre Mauroy",
+      "Point de vue intéressant": "Stade Pierre Mauroy"
+    },
+    {
+      "Sport": ["Boxe", "Tennis"],
+      "Lieu": "Stade Roland-Garros",
+      "Point de vue intéressant": "Stade Roland-Garros"
+    },
+    {
+      "Sport": ["Volleyball de plage"],
+      "Lieu": "Stade Tour Eiffel",
+      "Point de vue intéressant": ["tour eiffel", "Hôtel Pullman Paris Tour Eiffel"]
+    },
+    {
+      "Sport": ["Hockey"],
+      "Lieu": "Stade Yves-du-Manoir",
+      "Point de vue intéressant": ""
+    },
+    {
+      "Sport": ["Surf"],
+      "Lieu": "Teahupo'o, Tahiti",
+      "Point de vue intéressant": ""
+    },
+    {
+      "Sport": ["Athlétisme", "Cyclisme sur route"],
+      "Lieu": "Trocadéro",
+      "Point de vue intéressant": ""
+    },
+    {
+      "Sport": ["Cyclisme sur piste"],
+      "Lieu": "Vélodrome National de Saint-Quentin-en-Yvelines",
+      "Point de vue intéressant": ""
+    }
+  ]
