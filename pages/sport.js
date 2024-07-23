@@ -35,26 +35,23 @@ export default function Sport(params, data = undefined, map) {
           return;
         }
 
-        fetch(
+        let shopList = await fetch(
           "https://data.paris2024.org/api/explore/v2.1/catalog/datasets/paris-2024-boutiques-officielles/records?limit=99"
-        )
-          .then((response) => response.json())
-          .then((shopList) => {
-            let shopSearch = shopList.results.map((shop) => ({
-              title: shop.title,
-              label: shop.address,
-              longitude: shop.localisation_geographique.lon,
-              latitude: shop.localisation_geographique.lat,
-            }));
+        ).then((response) => response.json());
+        let shopSearch = shopList.results.map((shop) => ({
+          title: shop.title,
+          label: shop.address,
+          longitude: shop.localisation_geographique.lon,
+          latitude: shop.localisation_geographique.lat,
+        }));
 
-            shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
-            sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
+        shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
+        sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
 
-            DOMPlugin.reRender("sport_page", Sport(params, { sport: sport }, map));
-            setTimeout(() => {
-              map.showPosition(sport.point_geo.lat, sport.point_geo.lon, sport.sports, sport.nom_site);
-            }, 200);
-          });
+        DOMPlugin.reRender("sport_page", Sport(params, { sport: sport }, map));
+        setTimeout(() => {
+          map.showPosition(sport.point_geo.lat, sport.point_geo.lon, sport.sports, sport.nom_site);
+        }, 200);
       });
   }
 

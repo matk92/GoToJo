@@ -4,8 +4,25 @@ import DOMPlugin from "../core/DOMPlugin.js";
 
 // On le passe en paramètre la carte pour pouvoir interagir avec
 export default function SportsList(map, eventsList, selectedDate = undefined) {
-  let allDates = [];
+  let allDates = [
+    "2024-09-01",
+    "2024-08-29",
+    "2024-07-24",
+    "2024-07-27",
+    "2024-07-25",
+    "2024-08-05",
+    "2024-08-06",
+    "2024-09-08",
+    "2024-08-30",
+    "2024-09-04",
+    "2024-08-10",
+    "2024-07-28",
+    "2024-09-03",
+    "2024-07-30",
+    "2024-08-01",
+  ];
   if (eventsList !== undefined) {
+    if (selectedDate === undefined) selectedDate = "2024-07-27";
     if (eventsList.results !== undefined) eventsList = eventsList.results;
     for (let event of eventsList) {
       if (!allDates.includes(event.start_date)) {
@@ -15,8 +32,6 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
     eventsList.sort((a, b) => {
       return new Date(b.start_date) - new Date(a.start_date);
     });
-
-    if (selectedDate === undefined) selectedDate = "2024-07-27";
   }
 
   function changeDate(event) {

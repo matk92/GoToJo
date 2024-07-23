@@ -42,6 +42,30 @@ export default function getSportImage(sport, white = false) {
     "Cyclisme sur piste (CTR)": "Cycling road (Olympic).svg",
     "Skateboard (SKB)": "BMX Racing (Olympic).svg",
     "Athlétisme (ATH)": "Athletics (Olympic).svg",
+    "Badminton": "Badminton (Olympic).svg",
+    "Handball": "Beach volleyball (Olympic).svg",
+    "Rowing": "Canoe slalom (Olympic).svg",
+    "Shooting": "Archery (Olympic).svg",
+    "Volleyball": "Beach volleyball (Olympic).svg",
+    "Equestrian": "Equestrian dressage (Olympic).svg",
+    "Fencing": "Boxing (Olympic).svg",
+    "Hockey": "Artistic Gymnastics (Olympic).svg",
+    "Judo": "Boxing (Olympic).svg",
+    "Artistic Gymnastic": "Artistic Gymnastics (Olympic).svg",
+    "Basketball": "Basketball (Olympic).svg",
+    "Diving": "Artistic swimming (Olympic).svg",
+    "Swimming": "Artistic swimming (Olympic).svg",
+    "Skateboarding": "BMX freestyle (Olympic).svg",
+    "Tennis": "Badminton (Olympic).svg",
+    "Beach Volleyball": "Beach volleyball (Olympic).svg",
+    "Water Polo": "Artistic swimming (Olympic).svg",
+    "Cycling Road": "Cycling road (Olympic).svg",
+    "Rugby Sevens": "Beach volleyball (Olympic).svg",
+    "Canoe Slalom": "Canoe slalom (Olympic).svg",
+    "Football": "Beach volleyball (Olympic).svg",
+    "Table Tennis": "Badminton (Olympic).svg",
+    "Boxing": "Boxing (Olympic).svg",
+    "Surfing": "Artistic swimming (Olympic).svg",
   };
   const sportsImgWhite = {
     "Football (FBL)": "Beach volleyball (Olympic) white.svg",
@@ -86,12 +110,36 @@ export default function getSportImage(sport, white = false) {
     "Cyclisme sur piste (CTR)": "Cycling road (Olympic) white.svg",
     "Skateboard (SKB)": "BMX Racing (Olympic) white.svg",
     "Athlétisme (ATH)": "Athletics (Olympic) white.svg",
+    "Badminton": "Badminton (Olympic) white.svg",
+    "Handball": "Beach volleyball (Olympic) white.svg",
+    "Rowing": "Canoe slalom (Olympic) white.svg",
+    "Shooting": "Archery (Olympic) white.svg",
+    "Volleyball": "Beach volleyball (Olympic) white.svg",
+    "Equestrian": "Equestrian dressage (Olympic) white.svg",
+    "Fencing": "Boxing (Olympic) white.svg",
+    "Hockey": "Artistic Gymnastics (Olympic) white.svg",
+    "Judo": "Boxing (Olympic) white.svg",
+    "Artistic Gymnastic": "Artistic Gymnastics (Olympic) white.svg",
+    "Basketball": "Basketball (Olympic) white.svg",
+    "Diving": "Artistic swimming (Olympic) white.svg",
+    "Swimming": "Artistic swimming (Olympic) white.svg",
+    "Skateboarding": "BMX freestyle (Olympic) white.svg",
+    "Tennis": "Badminton (Olympic) white.svg",
+    "Beach Volleyball": "Beach volleyball (Olympic) white.svg",
+    "Water Polo": "Artistic swimming (Olympic) white.svg",
+    "Cycling Road": "Cycling road (Olympic) white.svg",
+    "Rugby Sevens": "Beach volleyball (Olympic) white.svg",
+    "Canoe Slalom": "Canoe slalom (Olympic) white.svg",
+    "Football": "Beach volleyball (Olympic) white.svg",
+    "Table Tennis": "Badminton (Olympic) white.svg",
+    "Boxing": "Boxing (Olympic) white.svg",
+    "Surfing": "Artistic swimming (Olympic) white.svg",
   };
 
   let image = white == true ? sportsImgWhite[sport] : sportsImg[sport];
   if (image === undefined) {
     Object.keys(sportsImg).forEach((key) => {
-      if (sport.includes(key)) {
+      if (sport.includes(key) || key.includes(sport)) {
         image = white == true ? sportsImgWhite[key] : sportsImg[key];
       }
     });
