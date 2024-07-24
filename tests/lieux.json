@@ -38,11 +38,13 @@
       "Sport": ["Pentathlon moderne", "Sports Équestres"],
       "Lieu": "Château de Versailles",
       "Point de vue intéressant": "château de versailles"
+      "Cordonnées": "48.8048, 2.1204"
     },
     {
       "Sport": ["VTT"],
       "Lieu": "Colline d'Elancourt",
       "Point de vue intéressant": "colline d'elancourt"
+      "Cordonnées": "48.7700, 1.9590"
     },
     {
       "Sport": ["Escrime", "Taekwondo"],
@@ -53,26 +55,33 @@
       "Sport": ["Athlétisme"],
       "Lieu": "Hôtel de Ville",
       "Point de vue intéressant": "hôtel de ville"
+      "Cordonnées": "48.8566, 2.3522"
     },
     {
       "Sport": ["Athlétisme", "Cyclisme sur route", "Tir à l'arc"],
       "Lieu": "Invalides",
       "Point de vue intéressant": "invalides"
+      "Cordonnées": "48.8584, 2.3123"
     },
     {
       "Sport": ["Basketball 3x3", "Breaking", "Cyclisme BMX Freestyle", "Skateboard"],
       "Lieu": "Parc Urbain La Concorde",
       "Point de vue intéressant": "Hôtel de Crillon, A Rosewood Hotel"
+      "Cordonnées": "48.8656, 2.3214"
     },
     {
       "Sport": ["Golf"],
       "Lieu": "Golf National",
       "Point de vue intéressant": "golf national"
+      "Cordonnées": "48.7100, 2.0300"
     },
     {
       "Sport": ["Voile"],
       "Lieu": "Marina de Marseille",
       "Point de vue intéressant": ["Hotel nhow Marseille", "La Maison Mickael", "Le Comptoir Marseillais"]
+      "Cordonnées Hotel nhow Marseille": "43.2960, 5.3650"
+      "Cordonnées La Maison Mickael": "43.2960, 5.3650"
+      "Cordonnées Le Comptoir Marseillais": "43.2960, 5.3650"
     },
     {
       "Sport": ["Football"],
@@ -88,6 +97,7 @@
       "Sport": ["Cyclisme sur route", "Marathon Swimming", "Triathlon"],
       "Lieu": "Pont Alexandre III",
       "Point de vue intéressant": "Pont Alexandre III"
+      "Cordonnées" : "48.8636, 2.3136"
     },
     {
       "Sport": ["Escalade sportive"],
@@ -153,6 +163,8 @@
       "Sport": ["Volleyball de plage"],
       "Lieu": "Stade Tour Eiffel",
       "Point de vue intéressant": ["tour eiffel", "Hôtel Pullman Paris Tour Eiffel"]
+      "Cordonnées tour eiffel": "48.8584, 2.2945"
+      "Cordonnées Hôtel Pullman Paris Tour Eiffel": "48.8584, 2.2945"
     },
     {
       "Sport": ["Hockey"],
