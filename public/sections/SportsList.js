@@ -125,9 +125,15 @@ export default function SportsList(map, eventsList, selectedDate = undefined) {
                       ? {
                           selected: true,
                           value: date,
+                          style: {
+                            color: "#000",
+                          },
                         }
                       : {
                           value: date,
+                          style: {
+                            color: "#000",
+                          },
                         },
                   children: [
                     {
