@@ -1,8 +1,9 @@
 export default [
+  // ------ Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)  -------------------------------------
   {
     title: "Rosa Bonheur sur Seine",
     type: "bar",
-    description: "Cyclisme sur route, Marathon Swimming, Triathlon",
+    description: "péniche avec terrasse sur la Seine",
     sport: "Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)",
     latitude: 48.86343420126087,
     longitude: 2.31583999880963,
@@ -10,12 +11,69 @@ export default [
   {
     title: "Opening Ceremony Entrance F4 Access 13",
     type: "entrance",
-    description: "Cérémonie d'ouverture Entrée F4 Accès 13",
+    description: " quaies sur la Seine",
     sport: "Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)",
     latitude: 48.86330889155494,
     longitude: 2.317482717506573,
   },
+  {
+    title: "Riviera Fuga",
+    type: "bar",
+    description: "péniche avec terrasse sur la Seine",
+    sport: "Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)",
+    latitude: 48.86310897315466,
+    longitude: 2.312529028019661,
+  },
+{
+    title: "Bridge Club",
+    type: "bar",
+    description: "quai sur la Seine",
+    sport: "Cyclisme sur route - arrivée Contre-la-montre (CRD), Natation marathon (OWS), Triathlon (TRI)",
+    latitude: 48.86422088687875,
+    longitude: 2.311927752133588,
+}
+
   // ----------------------------------------------------------
+
+  //---------------Basketball 3x3 (BK3), Breaking (BKG)----------------
+
+{
+    title: "Café Lapérouse Concorde",
+    type: "bar",
+    description: " café avec terrasse",
+    sport: "Basketball 3x3 (BK3), Breaking (BKG)",
+    latitude: 48.86677060085702, 
+    longitude: 2.322980555676446,
+}
+{
+  title: "Nonos & comestibles",
+  type: "resto",
+  description: "resraurant avec terrasse 4,8 étoiles sur Google",
+  sport: "Basketball 3x3 (BK3), Breaking (BKG)",
+  latitude: 48.86726167579227,  
+  longitude: 2.3211617916548763,
+}
+{
+  title: "Hotel Daguessau",
+  type: "hotel",
+  description: "hotel 4 étoiles avec chambre vue sur place de la concorde et terrasse",
+  sport: "Basketball 3x3 (BK3), Breaking (BKG)",
+  latitude: 48.86734943416911, 
+  longitude: 2.3212113294353554,
+}
+{
+  title: "Hôtel de la Marine",
+  type: "hotel",
+  description: "hotel 5 étoiles avec chambre vue sur place de la concorde et terrasse",
+  sport: "Basketball 3x3 (BK3), Breaking (BKG)",
+  latitude: 48.866487477595236,  
+  longitude: 2.3234785549653467,
+}
+
+
+  // ----------------------------------------------------------
+
+  //-----------------------------------------------------------
   {
     Sport: ["Basketball", "Gymnastique artistique", "Trampoline"],
     Lieu: "Arena Bercy",
