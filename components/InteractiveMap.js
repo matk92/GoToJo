@@ -5,6 +5,7 @@ export default function InteractiveMap(map) {
       id: "map-and-iframe-container",
       style: {
         position: "sticky",
+        display: "flex",
         width: "100%",
         height: "50vw",
         "border-radius": "22px",
@@ -20,12 +21,8 @@ export default function InteractiveMap(map) {
         props: {
           id: "direction",
           style: {
-            position: "absolute",
-            left: "20",
-            top: "0",
             width: "35%",
             height: "100%",
-            "z-index": "1000",
           },
           src: "https://citymapper.com",
         },
@@ -35,7 +32,7 @@ export default function InteractiveMap(map) {
         props: {
           style: {
             height: "100%",
-            width: "100%",
+            width: "65%",
             "z-index": "0",
           },
           id: "mapholder",

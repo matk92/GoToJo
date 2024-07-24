@@ -38,8 +38,10 @@ export default function Home() {
           }));
           DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch]));
 
-          shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
-          sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
+          shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
+          sportsSearch.map((sport) =>
+            map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title)
+          );
         });
     })
     .catch(console.error);
@@ -49,31 +51,34 @@ export default function Home() {
   function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
-  
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
+
     const daysElement = document.getElementById("days");
     const hoursElement = document.getElementById("hours");
     const minutesElement = document.getElementById("minutes");
     const secondsElement = document.getElementById("seconds");
-  
+
     if (daysElement) daysElement.innerText = days;
     if (hoursElement) hoursElement.innerText = hours;
     if (minutesElement) minutesElement.innerText = minutes;
     if (secondsElement) secondsElement.innerText = seconds;
-  
+
+    if (!daysElement && !hoursElement && !minutesElement && !secondsElement) {
+      clearInterval(interval);
+    }
+
     if (distance < 0) {
       clearInterval(interval);
       const countdownElement = document.querySelector(".countdown");
       if (countdownElement) countdownElement.innerText = "Les Jeux Olympiques Paris 2024 ont commencé !";
     }
   }
-  
+
   const interval = setInterval(updateCountdown, 1000);
-  
 
   return {
     head: ["<title>GoToJo 2024</title>", '<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />'],
@@ -146,7 +151,7 @@ export default function Home() {
                     gap: "10px",
                     "justify-content": "center",
                     "align-items": "center",
-                    "margin": "20px 0px",
+                    margin: "20px 0px",
                     "background-color": "#342E46",
                     "text-align": "center",
                     color: "#DAA520",
