@@ -1,0 +1,17 @@
+{
+  "name": "gotojo",
+  "version": "1.0.0",
+  "description": "GoToJo est un projet qui pour objectif de fournir aux utilisateurs une expérience interactive pour les Jeux\r Olympiques de 2024, en mettant en avant les meilleurs endroits (spots) depuis lesquels ils peuvent\r observer les événements sportifs en direct. Elle offre une carte interactive avec des informations\r détaillées sur les lieux des événements, les sports programmés, et permet également la recherche\r filtrée et d'autres fonctionnalités bonus",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-tools": "^13.14.0"
+  }
+}
