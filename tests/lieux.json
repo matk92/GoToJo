@@ -37,14 +37,16 @@
     {
       "Sport": ["Pentathlon moderne", "Sports Équestres"],
       "Lieu": "Château de Versailles",
-      "Point de vue intéressant": "château de versailles"
-      "Cordonnées": "48.8048, 2.1204"
+      "Point de vue intéressant": "château de versailles",
+      "latitude": "48.8048",
+      "longitude": "2.1204"
     },
     {
       "Sport": ["VTT"],
       "Lieu": "Colline d'Elancourt",
-      "Point de vue intéressant": "colline d'elancourt"
-      "Cordonnées": "48.7700, 1.9590"
+      "Point de vue intéressant": "colline d'elancourt",
+      "latitude": "48.7700",
+      "longitude": "1.9590"
     },
     {
       "Sport": ["Escrime", "Taekwondo"],
@@ -54,34 +56,41 @@
     {
       "Sport": ["Athlétisme"],
       "Lieu": "Hôtel de Ville",
-      "Point de vue intéressant": "hôtel de ville"
-      "Cordonnées": "48.8566, 2.3522"
+      "Point de vue intéressant": "hôtel de ville",
+      "latitude": "48.8566",
+      "longitude": "2.3522"
     },
     {
       "Sport": ["Athlétisme", "Cyclisme sur route", "Tir à l'arc"],
       "Lieu": "Invalides",
-      "Point de vue intéressant": "invalides"
-      "Cordonnées": "48.8584, 2.3123"
+      "Point de vue intéressant": "invalides",
+      "latitude": "48.8584",
+      "longitude": "2.3123"
     },
     {
       "Sport": ["Basketball 3x3", "Breaking", "Cyclisme BMX Freestyle", "Skateboard"],
       "Lieu": "Parc Urbain La Concorde",
-      "Point de vue intéressant": "Hôtel de Crillon, A Rosewood Hotel"
-      "Cordonnées": "48.8656, 2.3214"
+      "Point de vue intéressant": "Hôtel de Crillon, A Rosewood Hotel",
+      "latitude": "48.8656",
+      "longitude": "2.3214"
     },
     {
       "Sport": ["Golf"],
       "Lieu": "Golf National",
-      "Point de vue intéressant": "golf national"
-      "Cordonnées": "48.7100, 2.0300"
+      "Point de vue intéressant": "golf national",
+      "latitude": "48.7710",
+      "longitude": "2.0330"
     },
     {
       "Sport": ["Voile"],
       "Lieu": "Marina de Marseille",
-      "Point de vue intéressant": ["Hotel nhow Marseille", "La Maison Mickael", "Le Comptoir Marseillais"]
-      "Cordonnées Hotel nhow Marseille": "43.2960, 5.3650"
-      "Cordonnées La Maison Mickael": "43.2960, 5.3650"
-      "Cordonnées Le Comptoir Marseillais": "43.2960, 5.3650"
+      "Point de vue intéressant": ["Hotel nhow Marseille", "La Maison Mickael", "Le Comptoir Marseillais"],
+      "latitude Hotel nhow Marseille": "43.2960",
+      "longitude Hotel nhow Marseille": "5.3650",
+      "latitude La Maison Mickael": "43.2960",
+      "longitude La Maison Mickael": "5.3650",
+      "latitude Le Comptoir Marseillais": "43.2960",
+      "longitude Le Comptoir Marseillais": "5.3650"
     },
     {
       "Sport": ["Football"],
@@ -96,8 +105,9 @@
     {
       "Sport": ["Cyclisme sur route", "Marathon Swimming", "Triathlon"],
       "Lieu": "Pont Alexandre III",
-      "Point de vue intéressant": "Pont Alexandre III"
-      "Cordonnées" : "48.8636, 2.3136"
+      "Point de vue intéressant": "Pont Alexandre III",
+      "latitude": "48.8636",
+      "longitude": "2.3136"
     },
     {
       "Sport": ["Escalade sportive"],
