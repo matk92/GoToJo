@@ -23,6 +23,7 @@ export default function Home() {
         label: sport.start_date + "  " + sport.nom_site,
         longitude: sport.point_geo.lon,
         latitude: sport.point_geo.lat,
+        link: "/event/" + sport.sports,
       }));
 
       const url2 =

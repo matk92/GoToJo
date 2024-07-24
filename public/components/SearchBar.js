@@ -23,7 +23,7 @@ export default function SearchBar(map, eventsList = []) {
       top: element.getBoundingClientRect().top - offsetTop,
       behavior: "smooth",
     });
-    map.showPosition(event.latitude, event.longitude, event.title, event.label);
+    map.showPosition(event.latitude, event.longitude, event.title, event.label, event.link);
     // hide search results
     DOMPlugin.reRender("search_results", searchResults());
     document.getElementById("search_input").value = "";

@@ -127,13 +127,25 @@ class MapPlugin {
     }
   };
 
-  showPosition = (latitude, longitude, title, description) => {
+  showPosition = (latitude, longitude, title, description, link) => {
     if (this.map) {
       this.map.setView([latitude, longitude], 13); // Update the position of the map
       let marker = L.marker([latitude, longitude]).addTo(this.map);
 
+      let label = `<b>${title}</b><br>${description}`;
+
+      if (link != undefined) {
+        if (window.handleClick === undefined) {
+          window.handleClick = (link) => {
+            history.pushState(null, null, link);
+          };
+        }
+
+        label += `<br><a onclick="handleClick('${link}')">Voir plus</a>`;
+      }
+
       if (title) {
-        marker.bindPopup(`<b>${title}</b><br>${description}`).openPopup();
+        marker.bindPopup(label).openPopup();
       }
     }
   };
