@@ -1,12 +1,13 @@
 import InteractiveMap from "../components/InteractiveMap.js";
 import Spinner from "../components/Spinner.js";
 import { BrowserLink } from "../core/BrowserRouter.js";
-import { formatDate, formatHours } from "../core/DatesHelper.js";
+import { formatDate } from "../core/DatesHelper.js";
 import DOMPlugin from "../core/DOMPlugin.js";
 import MapPlugin from "../core/MapPlugin.js";
 import Footer from "../sections/Footer.js";
 import SportDetails from "../sections/sport_details/SportDetails.js";
-import getSportImage, { getSportNewsName } from "../utils/SportsUtils.js";
+import getSportImage from "../utils/SportsUtils.js";
+import spots from "../data/spots.js";
 
 export default function Sport(params, data = undefined, map) {
   if (map === undefined) {
@@ -45,7 +46,10 @@ export default function Sport(params, data = undefined, map) {
         }));
 
         shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
-        sportsSearch.map((sport) => map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title));
+        sportsSearch.map((sport) =>
+          map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title)
+        );
+        spots.map((spot) => map.addSpot(spot.latitude, spot.longitude, spot.title, spot.label));
 
         DOMPlugin.reRender("sport_page", Sport(params, { sport: sport }, map));
         setTimeout(() => {
@@ -234,4 +238,3 @@ export default function Sport(params, data = undefined, map) {
     ],
   };
 }
-
