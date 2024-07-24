@@ -5,6 +5,7 @@ import MapPlugin from "../core/MapPlugin.js";
 import Footer from "../sections/Footer.js";
 import Header from "../sections/Header.js";
 import SportsList from "../sections/SportsList.js";
+import spots from "../data/spots.js";
 
 export default function Home() {
   const map = new MapPlugin();
@@ -41,6 +42,10 @@ export default function Home() {
           shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
           sportsSearch.map((sport) =>
             map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title)
+          );
+          spots.map(
+            (spot) =>
+              spot.latitude && spot.longitude && map.addMarker(spot.latitude, spot.longitude, spot.Lieu, "", "green")
           );
         });
     })
@@ -134,7 +139,7 @@ export default function Home() {
                     children: [
                       {
                         type: "TEXT_NODE",
-                        content: "",
+                        content: "Carte Interactive",
                       },
                     ],
                   },

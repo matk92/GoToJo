@@ -172,9 +172,9 @@
     {
       "Sport": ["Volleyball de plage"],
       "Lieu": "Stade Tour Eiffel",
-      "Point de vue intéressant": ["tour eiffel", "Hôtel Pullman Paris Tour Eiffel"]
-      "Cordonnées tour eiffel": "48.8584, 2.2945"
-      "Cordonnées Hôtel Pullman Paris Tour Eiffel": "48.8584, 2.2945"
+      "Point de vue intéressant": ["tour eiffel", "Hôtel Pullman Paris Tour Eiffel"],
+      "Cordonnées tour eiffel": "48.8584, 2.2945",
+      "Cordonnées Hôtel Pullman Paris Tour Eiffel": "48.8584, 2.2945",
     },
     {
       "Sport": ["Hockey"],

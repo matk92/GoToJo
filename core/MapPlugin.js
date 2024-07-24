@@ -1,8 +1,8 @@
-
 class MapPlugin {
   map = null;
   redIcon = null;
   cyanIcon = null;
+  greenIcon = null;
   markers = [];
 
   initMap = () => {
@@ -22,6 +22,11 @@ class MapPlugin {
     });
     this.cyanIcon = new L.Icon({
       iconUrl: "/img/cyan_dot.svg",
+      iconSize: [10, 10],
+      iconAnchor: [10, 10],
+    });
+    this.greenIcon = new L.Icon({
+      iconUrl: "/img/green_dot.svg",
       iconSize: [10, 10],
       iconAnchor: [10, 10],
     });
@@ -47,6 +52,8 @@ class MapPlugin {
       L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(label);
     } else if (color == "cyan" && this.cyanIcon !== null) {
       L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(label);
+    } else if (color == "green" && this.greenIcon !== null) {
+      L.marker([lat, lng], { icon: this.greenIcon }).addTo(this.map).bindPopup(label);
     } else {
       // Si les icones n'ont pas été chargées, on les ajoute à la liste des marqueurs pour les ajouter plus tard
       this.markers.push({ lat, lng, title, description, color, link });

@@ -156,6 +156,7 @@ export function getSportNewsName(sport) {
     "Parc Urbain la Concorde": "",
     Basketball: "basketball",
     "Tennis de table": "tennis-de-table",
+    "Tennis de table para": "tennis-de-table",
     Aviron: "aviron",
     Hockey: "hockey-sur-gazon",
     "Cyclisme sur route - arrivée Contre-la-montre": "cyclisme-sur-route",
@@ -187,7 +188,10 @@ export function getSportNewsName(sport) {
 
   if (sportName == undefined) {
     for (let key in list) {
-      if (sport.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(sport.toLowerCase())) {
+      if (
+        sport.toLowerCase().split("(")[0].replace("para ", "").includes(key.toLowerCase()) ||
+        key.toLowerCase().includes(sport.toLowerCase().split("(")[0].replace("para ", ""))
+      ) {
         sportName = list[key];
         break;
       }
