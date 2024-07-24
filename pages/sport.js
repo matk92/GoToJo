@@ -5,14 +5,12 @@ import { formatDate, formatHours } from "../core/DatesHelper.js";
 import DOMPlugin from "../core/DOMPlugin.js";
 import MapPlugin from "../core/MapPlugin.js";
 import Footer from "../sections/Footer.js";
-import getSportImage from "../utils/SportsUtils.js";
+import getSportImage, { getSportNewsName } from "../utils/SportsUtils.js";
 
 export default function Sport(params, data = undefined, map) {
   if (map === undefined) {
     map = new MapPlugin();
   }
-
-  console.log(data);
 
   // Si il n'y as pas de data on appelle les API pour recuperer de l'informations
   if (data == undefined) {
@@ -45,8 +43,8 @@ export default function Sport(params, data = undefined, map) {
           latitude: shop.localisation_geographique.lat,
         }));
 
-        shopSearch.map((shop) => map.addRedMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
-        sportsSearch.map((sport) => map.addRedMarker(sport.latitude, sport.longitude, sport.title, sport.label));
+        shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
+        sportsSearch.map((sport) => map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title));
 
         DOMPlugin.reRender("sport_page", Sport(params, { sport: sport }, map));
         setTimeout(() => {
@@ -81,8 +79,9 @@ export default function Sport(params, data = undefined, map) {
         type: "div",
         props: {
           style: {
-            "max-width": "1000px",
+            "max-width": "1200px",
             margin: "0 auto",
+            "padding-inline": "20px",
             "padding-bottom": "60px",
             "min-height": "100vh",
           },
@@ -244,6 +243,33 @@ function SportDetails(sport, detail = "calendrier", data) {
         .then((calendar) => {
           DOMPlugin.reRender("sport_details", SportDetails(sport, detail, { calendar: calendar.units }));
         });
+    } else if (detail == "actualités") {
+      let sportName = getSportNewsName(sport.sports);
+
+      fetch("https://olympics.com/fr/paris-2024/news-all/" + sportName)
+        .then((response) => response.text())
+        .then((html) => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+
+          const articles = doc.querySelectorAll('[data-cy="card-m"]');
+          let data = [];
+          articles.forEach((article) => {
+            const title = article.querySelector('[data-cy="title"]').textContent;
+            const articleUrl = article.querySelector('[data-cy="link"]').getAttribute("href");
+            const imageUrl = article.querySelector("img").getAttribute("src");
+            data.push({
+              title: title,
+              url: articleUrl,
+              image: imageUrl,
+            });
+          });
+
+          DOMPlugin.reRender("sport_details", SportDetails(sport, detail, { articles: data }));
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     } else if (detail == "images") {
       const encodedName = encodeURIComponent(sport.nom_site);
       // AIzaSyCHzRzxCzN42920CeHDKr1oLnTKciqDIpU
@@ -287,7 +313,7 @@ function SportDetails(sport, detail = "calendrier", data) {
 }
 
 function getDetailsTitles(detail, onclick) {
-  let tabs = ["Calendrier", "Images"].map((tab) => ({
+  let tabs = ["Calendrier", "Actualités", "Images"].map((tab) => ({
     type: "button",
     props: {
       style: {
@@ -360,7 +386,7 @@ function getDetailSection(detail, data) {
           {
             type: "HTML_NODE",
             content:
-              '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" heigh="20px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" /></svg>',
+              '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24px" heigh="24px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" /></svg>',
           },
           {
             type: "div",
@@ -422,7 +448,7 @@ function getDetailSection(detail, data) {
               {
                 type: "p",
                 props: {
-                  class: event.competitors.length == 0 ? "inter-regular-italic" : "barlow-bold",
+                  class: event.competitors.length == 0 ? "inter-light-italic" : "barlow-bold",
                   style: {
                     margin: "0",
                     "font-size": "1.5rem",
@@ -433,7 +459,7 @@ function getDetailSection(detail, data) {
                     type: "TEXT_NODE",
                     content:
                       event.competitors.length == 0
-                        ? "Les épreuves ne sont pas encore définies"
+                        ? "Les competiteurs ne sont pas encore définies"
                         : event.competitors
                             .reduce((acc, competitor) => acc + competitor.name + " vs ", "")
                             .slice(0, -4),
@@ -443,7 +469,7 @@ function getDetailSection(detail, data) {
               {
                 type: "p",
                 props: {
-                  class: "inter-regular-italic",
+                  class: "inter-regular",
                   style: {
                     margin: "0",
                     "font-size": "0.9rem",
@@ -463,7 +489,80 @@ function getDetailSection(detail, data) {
     };
   }
 
-  if (detail == "images" && data.images)
+  if (detail == "actualités" && data.articles) {
+    return {
+      type: "div",
+      props: {
+        style: {
+          padding: "20px",
+          display: "grid",
+          "grid-template-columns": "repeat(auto-fill, minmax(340px, 1fr))",
+          gap: "10px",
+        },
+      },
+      children: data.articles.map((article) => ({
+        type: "a",
+        props: {
+          href: article.url,
+          target: "_blank",
+          style: {
+            display: "flex",
+            "flex-direction": "column",
+            "max-height": "400px",
+            "max-width": "340px",
+            "border-radius": "10px",
+            "background-color": "#342E46",
+            width: "100%",
+            height: "100%",
+            color: "#fff0da",
+            "text-decoration": "none",
+          },
+        },
+        children: [
+          {
+            type: "img",
+            props: {
+              src: article.image,
+              style: {
+                width: "100%",
+                height: "200px",
+                "object-fit": "cover",
+                "border-radius": "10px",
+              },
+            },
+          },
+          {
+            type: "div",
+            props: {
+              style: {
+                padding: "14px",
+                "padding-bottom": "24px",
+              },
+            },
+            children: [
+              {
+                type: "h3",
+                props: {
+                  class: "barlow-bold",
+                  style: {
+                    margin: "0",
+                  },
+                },
+                children: [
+                  {
+                    type: "TEXT_NODE",
+                    content: article.title,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      })),
+    };
+  }
+
+  if (detail == "images" && data.images) {
     return {
       type: "div",
       props: {
@@ -489,4 +588,21 @@ function getDetailSection(detail, data) {
         },
       })),
     };
+  }
+
+  return {
+    type: "p",
+    props: {
+      style: {
+        padding: "20px",
+        "text-align": "center",
+      },
+    },
+    children: [
+      {
+        type: "TEXT_NODE",
+        content: "Impossible de recuperer les informations",
+      },
+    ],
+  };
 }

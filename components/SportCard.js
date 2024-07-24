@@ -88,7 +88,7 @@ export const SportCard = function (sport, onClickLocation) {
             children: [
               {
                 type: "TEXT_NODE",
-                content: sport.sports,
+                content: sport.sports.split(",")[0],
               },
             ],
           },

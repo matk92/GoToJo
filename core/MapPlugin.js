@@ -1,3 +1,4 @@
+
 class MapPlugin {
   map = null;
   redIcon = null;
@@ -25,17 +26,31 @@ class MapPlugin {
       iconAnchor: [10, 10],
     });
     this.markers.forEach((marker) => {
-      this.addRedMarker(marker.lat, marker.lng, marker.title, marker.description, marker.color);
+      this.addMarker(marker.lat, marker.lng, marker.title, marker.description, marker.color, marker.link);
     });
   };
 
-  addRedMarker = (lat, lng, title, description, color = "red") => {
+  addMarker = (lat, lng, title, description, color = "red", link) => {
+    let label = `<b>${title}</b><br>${description}`;
+
+    if (link != undefined) {
+      if (window.handleClick === undefined) {
+        window.handleClick = (link) => {
+          history.pushState(null, null, link);
+        };
+      }
+
+      label += `<br><a onclick="handleClick('${link}')">Voir plus</a>`;
+    }
+
     if (color == "red" && this.redIcon !== null) {
-      L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(`<b>${title}</b><br>${description}`);
+      L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(label);
     } else if (color == "cyan" && this.cyanIcon !== null) {
-      L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(`<b>${title}</b><br>${description}`);
+      L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(label);
     } else {
-      this.markers.push({ lat, lng, title, description, color });
+      // Si les icones n'ont pas été chargées, on les ajoute à la liste des marqueurs pour les ajouter plus tard
+      this.markers.push({ lat, lng, title, description, color, link });
+      return;
     }
   };
 
