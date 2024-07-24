@@ -1,3 +1,5 @@
+import GoogleSearchInfo from "../sections/GoogleSearchInfo.js";
+
 export default function InteractiveMap(map) {
   return {
     type: "div",
@@ -27,6 +29,7 @@ export default function InteractiveMap(map) {
           src: "https://citymapper.com",
         },
       },
+      GoogleSearchInfo(),
       {
         type: "div",
         props: {

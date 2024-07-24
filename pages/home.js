@@ -37,16 +37,13 @@ export default function Home() {
             longitude: shop.localisation_geographique.lon,
             latitude: shop.localisation_geographique.lat,
           }));
-          DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch]));
+          DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch, ...spots]));
 
           shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
           sportsSearch.map((sport) =>
             map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title)
           );
-          spots.map(
-            (spot) =>
-              spot.latitude && spot.longitude && map.addMarker(spot.latitude, spot.longitude, spot.Lieu, "", "green")
-          );
+          spots.map((spot) => map.addSpot(spot.latitude, spot.longitude, spot.title, spot.label));
         });
     })
     .catch(console.error);

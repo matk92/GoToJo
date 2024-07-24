@@ -1,9 +1,14 @@
+import GoogleSearchInfo from "../sections/GoogleSearchInfo.js";
+import DOMPlugin from "./DOMPlugin.js";
+import GoogleSearchPlugin from "./GoogleSearchPlugin.js";
+
 class MapPlugin {
   map = null;
   redIcon = null;
   cyanIcon = null;
   greenIcon = null;
   markers = [];
+  spots = [];
 
   initMap = () => {
     // partie de code qui permet de mettre paris par défaut sur la carte
@@ -30,9 +35,16 @@ class MapPlugin {
       iconSize: [10, 10],
       iconAnchor: [10, 10],
     });
+
     this.markers.forEach((marker) => {
       this.addMarker(marker.lat, marker.lng, marker.title, marker.description, marker.color, marker.link);
     });
+
+    this.spots.forEach((spot) => {
+      this.addSpot(spot.lat, spot.lng, spot.title, spot.description);
+    });
+
+    this.initializeSpotClickDetection();
   };
 
   addMarker = (lat, lng, title, description, color = "red", link) => {
@@ -52,13 +64,56 @@ class MapPlugin {
       L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(label);
     } else if (color == "cyan" && this.cyanIcon !== null) {
       L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(label);
-    } else if (color == "green" && this.greenIcon !== null) {
-      L.marker([lat, lng], { icon: this.greenIcon }).addTo(this.map).bindPopup(label);
     } else {
       // Si les icones n'ont pas été chargées, on les ajoute à la liste des marqueurs pour les ajouter plus tard
       this.markers.push({ lat, lng, title, description, color, link });
       return;
     }
+  };
+
+  addSpot = (lat, lng, title, description) => {
+    let label = `<b>${title}</b><br>${description}`;
+
+    if (this.greenIcon !== null) {
+      L.marker([lat, lng], { icon: this.greenIcon }).addTo(this.map).bindPopup(label);
+      if (this.spots.find((spot) => spot.lat === lat && spot.lng === lng) === undefined) {
+        this.spots.push({ lat, lng, title, description });
+      }
+    } else {
+      this.spots.push({ lat, lng, title, description });
+    }
+  };
+
+  initializeSpotClickDetection = () => {
+    this.map.on("popupopen", async (event) => {
+      // event.popup will contain the popup that was opened
+      const openedPopup = event.popup;
+
+      // Extracts the title from the popup content
+      const spotTitle = openedPopup.getContent().match(/<b>(.*?)<\/b>/)[1];
+
+      // Now, find the spot with this title in your spots array
+      const clickedSpot = this.spots.find((spot) => spot.title === spotTitle);
+
+      if (clickedSpot) {
+        DOMPlugin.reRender("google_search_info", GoogleSearchInfo(undefined, undefined, true));
+        let searchInfo = await GoogleSearchPlugin.search(clickedSpot.title + " " + clickedSpot.description);
+        let searchImages = await GoogleSearchPlugin.searchImages(clickedSpot.title + " " + clickedSpot.description);
+        DOMPlugin.reRender("google_search_info", GoogleSearchInfo(searchInfo, searchImages));
+      }
+    });
+    this.map.on("popupclose", (event) => {
+      const closedPopup = event.popup;
+
+      const spotTitle = closedPopup.getContent().match(/<b>(.*?)<\/b>/)[1];
+
+      const clickedSpot = this.spots.find((spot) => spot.title === spotTitle);
+
+      // On ferme la fenêtre d'information si on clique sur un autre spot
+      if (clickedSpot) {
+        DOMPlugin.reRender("google_search_info", GoogleSearchInfo());
+      }
+    });
   };
 
   locateMe = () => {

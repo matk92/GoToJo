@@ -1,20 +1,12 @@
 import Spinner from "../../components/Spinner.js";
 import DOMPlugin from "../../core/DOMPlugin.js";
+import GoogleSearchPlugin from "../../core/GoogleSearchPlugin.js";
 
 export default function SportImages(sport, images) {
   if (images == undefined) {
-    const encodedName = encodeURIComponent(sport.nom_site);
-    // AIzaSyCHzRzxCzN42920CeHDKr1oLnTKciqDIpU
-    // AIzaSyA3PYeK4r1vnaCPqQ7hC4a9XjGmfqg_4_0
-    fetch(
-      "https://www.googleapis.com/customsearch/v1?key=AIzaSyCHzRzxCzN42920CeHDKr1oLnTKciqDIpU&cx=639a89b0e9e4343b0&q=" +
-        encodedName +
-        "&searchType=image"
-    )
-      .then((response) => response.json())
-      .then((images) => {
-        DOMPlugin.reRender("sport_images", SportImages(sport, images.items));
-      });
+    GoogleSearchPlugin.searchImages(sport.nom_site).then((images) => {
+      DOMPlugin.reRender("sport_images", SportImages(sport, images.items));
+    });
   }
   return {
     type: "div",
