@@ -1,6 +1,14 @@
 # GoToJo
 
-Projet JavaScript from scratch. On s'en sert seulement de Firebase pour le déploiement.
+GoToJo est un projet JavaScript from scratch. il a pour but de nous familiariser avec les technologies web modernes et de nous permettre de mettre en pratique les concepts appris en cours.
+
+## lien du projet
+[GoToJo](https://gotojo-7604b.web.app/)
+
+## Intégrants : 
+- [Nicolas Calvelo](https://github.com/NicoCalvelo)
+- [Mathieu Keca](https://github.com/matk92)
+- [Rémy Saguez](https://github.com/RemySaguez)
 
 ## Description
 
@@ -9,4 +17,26 @@ Olympiques de 2024, en mettant en avant les meilleurs endroits (spots) depuis le
 observer les événements sportifs en direct. Elle offre une carte interactive avec des informations
 détaillées sur les lieux des événements, les sports programmés, et permet également la recherche
 filtrée et d'autres fonctionnalités bonus
+
+## Fonctionnalités
+- Pouvoir visualiser les différents spots sur une carte.
+- Pouvoir visualiser les différents sports programmés.
+- Pouvoir visualiser les différents lieux des événements.
+- Avoir des informations détaillées sur les spots, les sports et les lieux des événements.
+- Pouvoir chercher les transports en commun pour se rendre à un spot.
+
+
+
+## Outils utilisés
+
+Nous utilison la technomogie [Firebase](https://firebase.google.com/) proposé par google pour le déploiement de notre application.
+
+Pour le travail en amons du projet nous avons utilisé les outils suivants:
+
+- [Figma](https://www.figma.com/) pour la conception de l'interface graphique
+- [Trello](https://trello.com/) pour la gestion des tâches
+- [Discord](https://discord.com/) pour la communication
+- [visual studio code](https://code.visualstudio.com/) pour l'écriture du code
+- [Git](https://git-scm.com/) pour la gestion de version
+
 
