@@ -1,8 +1,8 @@
 export default function Footer() {
   return {
     type: "footer",
-    id: "footer",
     props: {
+      id: "footer",
       style: {
         color: "#f5f5f5",
         "background-color": "#2d2b46",

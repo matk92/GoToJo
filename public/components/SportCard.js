@@ -75,8 +75,8 @@ export const SportCard = function (sport, onClickLocation) {
           },
           {
             type: "h1",
-            class: "barlow-extrabold",
             props: {
+              class: "barlow-extrabold",
               style: {
                 "font-size": "28px",
                 margin: "10px 0",

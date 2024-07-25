@@ -9,6 +9,8 @@ class MapPlugin {
   greenIcon = null;
   markers = [];
   spots = [];
+  shops = [];
+  showPoints = ["Événements", "Boutiques", "Spots"];
 
   initMap = () => {
     // partie de code qui permet de mettre paris par défaut sur la carte
@@ -37,7 +39,11 @@ class MapPlugin {
     });
 
     this.markers.forEach((marker) => {
-      this.addMarker(marker.lat, marker.lng, marker.title, marker.description, marker.color, marker.link);
+      this.addMarker(marker.lat, marker.lng, marker.title, marker.description, marker.link);
+    });
+
+    this.shops.forEach((shop) => {
+      this.addShop(shop.lat, shop.lng, shop.title, shop.description);
     });
 
     this.spots.forEach((spot) => {
@@ -47,7 +53,7 @@ class MapPlugin {
     this.initializeSpotClickDetection();
   };
 
-  addMarker = (lat, lng, title, description, color = "red", link) => {
+  addMarker = (lat, lng, title, description, link) => {
     let label = `<b>${title}</b><br>${description}`;
 
     if (link != undefined) {
@@ -60,26 +66,35 @@ class MapPlugin {
       label += `<br><a onclick="handleClick('${link}')">Voir plus</a>`;
     }
 
-    if (color == "red" && this.redIcon !== null) {
+    if (this.redIcon !== null && this.showPoints.includes("Événements")) {
       L.marker([lat, lng], { icon: this.redIcon }).addTo(this.map).bindPopup(label);
-    } else if (color == "cyan" && this.cyanIcon !== null) {
+    }
+
+    if (this.markers.find((marker) => marker.lat === lat && marker.lng === lng) === undefined) {
+      this.markers.push({ lat, lng, title, description, link });
+    }
+  };
+
+  addShop = (lat, lng, title, description) => {
+    let label = `<b>${title}</b><br>${description}`;
+
+    if (this.cyanIcon !== null && this.showPoints.includes("Boutiques")) {
       L.marker([lat, lng], { icon: this.cyanIcon }).addTo(this.map).bindPopup(label);
-    } else {
-      // Si les icones n'ont pas été chargées, on les ajoute à la liste des marqueurs pour les ajouter plus tard
-      this.markers.push({ lat, lng, title, description, color, link });
-      return;
+    }
+
+    if (this.shops.find((shop) => shop.lat === lat && shop.lng === lng) === undefined) {
+      this.shops.push({ lat, lng, title, description });
     }
   };
 
   addSpot = (lat, lng, title, description) => {
     let label = `<b>${title}</b><br>${description}`;
 
-    if (this.greenIcon !== null) {
+    if (this.greenIcon !== null && this.showPoints.includes("Spots")) {
       L.marker([lat, lng], { icon: this.greenIcon }).addTo(this.map).bindPopup(label);
-      if (this.spots.find((spot) => spot.lat === lat && spot.lng === lng) === undefined) {
-        this.spots.push({ lat, lng, title, description });
-      }
-    } else {
+    }
+
+    if (this.spots.find((spot) => spot.lat === lat && spot.lng === lng) === undefined) {
       this.spots.push({ lat, lng, title, description });
     }
   };
@@ -147,6 +162,38 @@ class MapPlugin {
       if (title) {
         marker.bindPopup(label).openPopup();
       }
+    }
+  };
+
+  filterMarkers = (showPoints) => {
+    this.showPoints = showPoints;
+    if (this.map === null) {
+      return;
+    }
+
+    // On supprime tous les markers
+    this.map.eachLayer((layer) => {
+      if (layer instanceof L.Marker) {
+        this.map.removeLayer(layer);
+      }
+    });
+
+    if (this.showPoints.includes("Événements")) {
+      this.markers.forEach((marker) => {
+        this.addMarker(marker.lat, marker.lng, marker.title, marker.description, marker.link);
+      });
+    }
+
+    if (this.showPoints.includes("Boutiques")) {
+      this.shops.forEach((shop) => {
+        this.addShop(shop.lat, shop.lng, shop.title, shop.description);
+      });
+    }
+
+    if (this.showPoints.includes("Spots")) {
+      this.spots.forEach((spot) => {
+        this.addSpot(spot.lat, spot.lng, spot.title, spot.description);
+      });
     }
   };
 

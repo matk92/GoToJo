@@ -40,9 +40,9 @@ export default function Home() {
           }));
           DOMPlugin.reRender("search-bar", SearchBar(map, [...sportsSearch, ...shopSearch, ...spots]));
 
-          shopSearch.map((shop) => map.addMarker(shop.latitude, shop.longitude, shop.title, shop.label, "cyan"));
+          shopSearch.map((shop) => map.addShop(shop.latitude, shop.longitude, shop.title, shop.label,));
           sportsSearch.map((sport) =>
-            map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, "red", "/event/" + sport.title)
+            map.addMarker(sport.latitude, sport.longitude, sport.title, sport.label, sport.link)
           );
           spots.map((spot) => map.addSpot(spot.latitude, spot.longitude, spot.title, spot.label));
         });

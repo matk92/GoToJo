@@ -4,7 +4,39 @@ const DOMPlugin = {
   render: function (rootElement, routes) {
     BrowserRouter.bind(this)(routes, rootElement);
   },
+  validateStructure: function (structure) {
+    Object.keys(structure).forEach((key) => {
+      if (key === "type" && typeof structure[key] !== "string") {
+        throw new Error(`Type of structure must be a string`);
+      }
+      if (key === "props" && typeof structure[key] !== "object") {
+        throw new Error(`Props of structure must be an object`);
+      }
+      if (key === "children" && !Array.isArray(structure[key])) {
+        throw new Error(`Children of structure must be an array`);
+      }
+      if (key === "events" && typeof structure[key] !== "object") {
+        throw new Error(`Events of structure must be an object`);
+      }
+      if (key === "windowEvents" && typeof structure[key] !== "object") {
+        throw new Error(`Window events of structure must be an object`);
+      }
+      if (key === "head" && !Array.isArray(structure[key])) {
+        throw new Error(`Head of structure must be an array`);
+      }
+      if (key === "content" && typeof structure[key] !== "string") {
+        throw new Error(`Content of structure must be a string`);
+      }
+
+      if (["children", "type", "props", "events", "windowEvents", "head", "content"].indexOf(key) === -1) {
+        throw new Error(`Invalid key ${key} in structure`);
+      }
+    });
+    return true;
+  },
   renderStructure: function generateDom(structure) {
+    this.validateStructure(structure);
+
     let element;
 
     if (typeof structure.type === "string") {
