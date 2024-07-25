@@ -10,7 +10,7 @@ export default function InteractiveMap(map) {
         position: "sticky",
         display: "flex",
         width: "100%",
-        height: "50vw",
+        height: "40vw",
         "border-radius": "22px",
         border: "4px solid #342E46",
         "background-color": "#342E46",
